@@ -1,0 +1,36 @@
+load("//bazel:ps_cc_rules.bzl", "ps_cc_library")
+
+ps_cc_library(
+    name = "Strings",
+    srcs = ["Strings.cpp"],
+    hdrs = ["Strings.h"],
+    visibility = [":__subpackages__"],
+)
+
+ps_cc_library(
+    name = "Recursion",
+    srcs = ["Recursion.cpp"],
+    hdrs = ["Recursion.h"],
+    visibility = [":__subpackages__"],
+)
+
+ps_cc_library(
+    name = "HackerRank",
+    srcs = ["HackerRank.cpp"],
+    hdrs = ["HackerRank.h"],
+    visibility = [":__subpackages__"],
+)
+
+ps_cc_library(
+    name = "CircularQueue",
+    srcs = ["CircularQueue.cpp"],
+    hdrs = ["CircularQueue.h"],
+    visibility = [":__subpackages__"],
+)
+
+ps_cc_library(
+    name = "CircularBuffer",
+    srcs = ["CircularBuffer.cpp"],
+    hdrs = ["CircularBuffer.h"],
+    visibility = [":__subpackages__"],
+)

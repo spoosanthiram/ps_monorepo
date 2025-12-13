@@ -1,0 +1,24 @@
+filegroup(
+    name = "models",
+    srcs = glob(["models/**"]),
+    visibility = [
+        "//graphics/ui:__subpackages__",
+        "//graphics/geometry/test:__pkg__",
+    ],
+)
+
+filegroup(
+    name = "maps",
+    srcs = glob(["maps/**"]),
+    visibility = [
+        "//graphics/avmap:__subpackages__",
+    ],
+)
+
+filegroup(
+    name = "textures",
+    srcs = glob(["textures/**"]),
+    visibility = [
+        "//graphics/opengl:__subpackages__",
+    ],
+)

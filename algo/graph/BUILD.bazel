@@ -1,0 +1,97 @@
+load("//bazel:ps_cc_rules.bzl", "ps_cc_library")
+
+ps_cc_library(
+    name = "Graph",
+    hdrs = [
+        "Graph.h",
+    ],
+)
+
+ps_cc_library(
+    name = "KargerMinCutGraph",
+    srcs = ["KargerMinCutGraph.cpp"],
+    hdrs = ["KargerMinCutGraph.h"],
+    visibility = [":__subpackages__"],
+    deps = [
+        ":Graph",
+        "//core/utils:ClassHelper",
+    ],
+)
+
+ps_cc_library(
+    name = "BreadthFirstGraph",
+    srcs = ["BreadthFirstGraph.cpp"],
+    hdrs = ["BreadthFirstGraph.h"],
+    visibility = [":__subpackages__"],
+    deps = [
+        ":Graph",
+    ],
+)
+
+ps_cc_library(
+    name = "StronglyConnectedGraph",
+    srcs = ["StronglyConnectedGraph.cpp"],
+    hdrs = ["StronglyConnectedGraph.h"],
+    visibility = [":__subpackages__"],
+    deps = [
+        ":Graph",
+        "//core/utils:ClassHelper",
+    ],
+)
+
+ps_cc_library(
+    name = "DijkstraGraph",
+    srcs = ["DijkstraGraph.cpp"],
+    hdrs = ["DijkstraGraph.h"],
+    visibility = [":__subpackages__"],
+    deps = [
+        ":Graph",
+        "//algo/basic:MinHeap",
+    ],
+)
+
+ps_cc_library(
+    name = "PrimMinSpanningGraph",
+    srcs = ["PrimMinSpanningGraph.cpp"],
+    hdrs = ["PrimMinSpanningGraph.h"],
+    visibility = [":__subpackages__"],
+    deps = [
+        ":Graph",
+        "//algo/basic:MinHeap",
+        "//core/utils:ClassHelper",
+    ],
+)
+
+ps_cc_library(
+    name = "KruskalMinSpanningGraph",
+    srcs = ["KruskalMinSpanningGraph.cpp"],
+    hdrs = ["KruskalMinSpanningGraph.h"],
+    visibility = [":__subpackages__"],
+    deps = [
+        ":Graph",
+        "//core/utils:ClassHelper",
+    ],
+)
+
+ps_cc_library(
+    name = "BellmanFordGraph",
+    srcs = ["BellmanFordGraph.cpp"],
+    hdrs = ["BellmanFordGraph.h"],
+    visibility = [":__subpackages__"],
+    deps = [":Graph"],
+)
+
+ps_cc_library(
+    name = "AllPairShortestPathGraph",
+    srcs = ["AllPairShortestPathGraph.cpp"],
+    hdrs = ["AllPairShortestPathGraph.h"],
+    visibility = [":__subpackages__"],
+    deps = [":Graph"],
+)
+
+ps_cc_library(
+    name = "BitVertexClusteringGraph",
+    srcs = ["BitVertexClusteringGraph.cpp"],
+    hdrs = ["BitVertexClusteringGraph.h"],
+    visibility = [":__subpackages__"],
+)

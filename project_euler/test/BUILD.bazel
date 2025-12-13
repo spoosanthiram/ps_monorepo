@@ -1,0 +1,11 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "ProblemSet01Test",
+    size = "small",
+    srcs = ["ProblemSet01Test.cpp"],
+    deps = [
+        "//project_euler:ProblemSet01",
+        "@catch2//:catch2_main",
+    ],
+)

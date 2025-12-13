@@ -1,0 +1,21 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+
+cc_binary(
+    name = "Hello",
+    srcs = ["Hello.cpp"],
+)
+
+cc_binary(
+    name = "Enum",
+    srcs = ["Enum.cpp"],
+)
+
+cc_binary(
+    name = "Concepts",
+    srcs = ["Concepts.cpp"],
+)
+
+cc_binary(
+    name = "try",
+    srcs = ["try.cpp"],
+)

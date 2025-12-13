@@ -1,0 +1,25 @@
+filegroup(
+    name = "data",
+    srcs = glob(["data/*"]),
+)
+
+cc_test(
+    name = "Base64Test",
+    size = "small",
+    srcs = ["Base64Test.cpp"],
+    deps = [
+        "//core/utils:Base64",
+        "@catch2//:catch2_main",
+    ],
+)
+
+cc_test(
+    name = "SQLiteTest",
+    size = "small",
+    srcs = ["SQLiteTest.cpp"],
+    data = ["data"],
+    deps = [
+        "//core/utils:SQLite",
+        "@catch2//:catch2_main",
+    ],
+)

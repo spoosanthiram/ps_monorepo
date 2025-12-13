@@ -1,0 +1,25 @@
+load("//bazel:ps_cc_rules.bzl", "ps_cc_library")
+
+ps_cc_library(
+    name = "JobSchedule",
+    srcs = ["JobSchedule.cpp"],
+    hdrs = ["JobSchedule.h"],
+    visibility = [":__subpackages__"],
+)
+
+ps_cc_library(
+    name = "Knapsack",
+    srcs = ["Knapsack.cpp"],
+    hdrs = ["Knapsack.h"],
+    visibility = [":__subpackages__"],
+)
+
+ps_cc_library(
+    name = "TravelingSalesman",
+    srcs = ["TravelingSalesman.cpp"],
+    hdrs = ["TravelingSalesman.h"],
+    visibility = [":__subpackages__"],
+    deps = [
+        "//core/utils:Utils",
+    ],
+)

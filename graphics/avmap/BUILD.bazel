@@ -1,0 +1,94 @@
+load("//bazel:ps_cc_rules.bzl", "ps_cc_library")
+
+ps_cc_library(
+    name = "GeoLocation",
+    hdrs = ["GeoLocation.h"],
+    deps = [
+        "@units",
+    ],
+)
+
+ps_cc_library(
+    name = "EpsgData",
+    srcs = ["EpsgData.cpp"],
+    hdrs = ["EpsgData.h"],
+    data = [
+        "//graphics/data:maps",
+    ],
+    visibility = [
+        "__subpackages__",
+    ],
+    deps = [
+        ":GeoLocation",
+        "//core/utils:ClassHelper",
+    ],
+)
+
+ps_cc_library(
+    name = "CoordProjection",
+    srcs = ["CoordProjection.cpp"],
+    hdrs = ["CoordProjection.h"],
+    linkopts = [
+        "-lproj",
+    ],
+    deps = [
+        ":EpsgData",
+        "//graphics/geometry:GraphicsGeometry",
+    ],
+)
+
+ps_cc_library(
+    name = "GpkgMapList",
+    srcs = ["GpkgMapList.cpp"],
+    hdrs = ["GpkgMapList.h"],
+    data = [
+        "//graphics/data:maps",
+    ],
+    linkopts = [
+        "-lgdal",
+    ],
+    visibility = [
+        "__subpackages__",
+        "//graphics/ui:__subpackages__",
+    ],
+    deps = [
+        ":CoordProjection",
+        "@nlohmann-json",
+        "@spdlog",
+    ],
+)
+
+ps_cc_library(
+    name = "GpkgVectorReader",
+    srcs = ["GpkgVectorReader.cpp"],
+    hdrs = ["GpkgVectorReader.h"],
+    visibility = [
+        "__subpackages__",
+    ],
+    deps = [
+        ":GpkgMapList",
+    ],
+)
+
+ps_cc_library(
+    name = "GpkgRasterReader",
+    srcs = ["GpkgRasterReader.cpp"],
+    hdrs = ["GpkgRasterReader.h"],
+    deps = [
+        ":GpkgMapList",
+    ],
+)
+
+ps_cc_library(
+    name = "PriorMap",
+    srcs = ["PriorMap.cpp"],
+    hdrs = ["PriorMap.h"],
+    visibility = [
+        "//graphics/ui:__subpackages__",
+    ],
+    deps = [
+        ":GpkgRasterReader",
+        ":GpkgVectorReader",
+        "@mapbox-earcut",
+    ],
+)

@@ -1,0 +1,10 @@
+load("//bazel:ps_cc_rules.bzl", "ps_cc_library")
+
+ps_cc_library(
+    name = "matrix",
+    srcs = ["matrix.cpp"],
+    hdrs = ["matrix.h"],
+    visibility = [
+        ":__subpackages__",
+    ],
+)

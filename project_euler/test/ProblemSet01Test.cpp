@@ -1,0 +1,69 @@
+#include "algo/basic/SmallPrimes.h"
+#include "project_euler/ProblemSet01.h"
+
+#include <catch2/catch_test_macros.hpp>
+
+TEST_CASE("ProblemSet01 Multiple of 3 and 5")
+{
+    CHECK(Ps::ProjectEuler::multiple_3_and_5(10) == 23);
+    CHECK(Ps::ProjectEuler::multiple_3_and_5(1'000) == 233'168);
+}
+
+TEST_CASE("ProblemSet01 Largest Prime Factor")
+{
+    CHECK(Ps::ProjectEuler::largest_prime_factor(13'195) == 29);
+    CHECK(Ps::ProjectEuler::largest_prime_factor(600'851'475'143) == 6'857);
+}
+
+TEST_CASE("ProblemSet01 Largest Palindrome Product")
+{
+    CHECK(Ps::ProjectEuler::largest_palindrome_product() == 906'609);
+}
+
+TEST_CASE("ProblemSet01 Smallest Multiple")
+{
+    CHECK(Ps::ProjectEuler::smallest_multiple(10) == 2'520);
+    CHECK(Ps::ProjectEuler::smallest_multiple(20) == 232'792'560);
+}
+
+/// 10,001st prime
+///
+/// By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
+/// What is the 10,001st prime number?
+///
+TEST_CASE("ProblemSet01 Ith Prime")
+{
+    Ps::Algo::SmallPrimes sp{100'000};
+    CHECK(sp.get_prime(5) == 13);
+    CHECK(sp.get_prime(10'000) == 104743);
+}
+
+TEST_CASE("ProblemSet01 Largest Product")
+{
+    CHECK(Ps::ProjectEuler::largest_product("3675356291", 5) == 3150);
+    CHECK(Ps::ProjectEuler::largest_product("2709360626", 5) == 0);
+
+    std::string_view num{
+        "73167176531330624919225119674426574742355349194934"
+        "96983520312774506326239578318016984801869478851843"
+        "85861560789112949495459501737958331952853208805511"
+        "12540698747158523863050715693290963295227443043557"
+        "66896648950445244523161731856403098711121722383113"
+        "62229893423380308135336276614282806444486645238749"
+        "30358907296290491560440772390713810515859307960866"
+        "70172427121883998797908792274921901699720888093776"
+        "65727333001053367881220235421809751254540594752243"
+        "52584907711670556013604839586446706324415722155397"
+        "53697817977846174064955149290862569321978468622482"
+        "83972241375657056057490261407972968652414535100474"
+        "82166370484403199890008895243450658541227588666881"
+        "16427171479924442928230863465674813919123162824586"
+        "17866458359124566529476545682848912883142607690042"
+        "24219022671055626321111109370544217506941658960408"
+        "07198403850962455444362981230987879927244284909188"
+        "84580156166097919133875499200524063689912560717606"
+        "05886116467109405077541002256983155200055935729725"
+        "71636269561882670428252483600823257530420752963450"};
+    CHECK(Ps::ProjectEuler::largest_product(num, 4) == 5'832);
+    CHECK(Ps::ProjectEuler::largest_product(num, 13) == 23'514'624'000);
+}

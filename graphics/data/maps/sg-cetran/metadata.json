@@ -1,0 +1,141 @@
+{
+    "location": {
+        "basemapVersion": "2022-05-24_03-29-00-GMT",
+        "boundingBox": {
+            "max": {
+                "lat": 1.3532524611647543,
+                "lng": 103.6970329284668
+            },
+            "maxTile": {
+                "x": 1652655.0,
+                "y": 1040692.0
+            },
+            "min": {
+                "lat": 1.3561698888933202,
+                "lng": 103.69394302368164
+            },
+            "minTile": {
+                "x": 1652637.0,
+                "y": 1040675.0
+            }
+        },
+        "createdAt": "2022-05-24T04:42:05.047000",
+        "createdBy": {
+            "auth0Id": "98jyE0Z0BM6FsPC64jV7jg51oWAWU00Z",
+            "avatarUrls": {
+                "url16": "",
+                "url24": "",
+                "url32": "",
+                "url48": ""
+            },
+            "displayName": "Map SDK",
+            "emailAddress": "",
+            "id": "4b15ae2f-feb6-4caf-870b-93e2a105cbb9",
+            "oktaId": null,
+            "timeZone": null
+        },
+        "drivelogName": "MERGE",
+        "hasCentralPoseGraph": true,
+        "id": 4879,
+        "isReadonly": false,
+        "key": "sg-cetran",
+        "name": "sg-cetran",
+        "operationType": "MERGE",
+        "sessionHierarchy": [],
+        "stageName": null,
+        "tags": [],
+        "tileRoute": "basemaplive/sg-cetran/2022-05-24_03-29-00-GMT",
+        "tiles": [
+            {
+                "tileDirectory": "color",
+                "tileType": "SlippyTile"
+            },
+            {
+                "tileDirectory": "curbs",
+                "tileType": "SlippyTile"
+            },
+            {
+                "tileDirectory": "groundheight",
+                "tileType": "SlippyTile"
+            },
+            {
+                "tileDirectory": "intensity",
+                "tileType": "SlippyTile"
+            },
+            {
+                "tileDirectory": "pcd",
+                "tileType": "PointCloud"
+            },
+            {
+                "tileDirectory": "vertical",
+                "tileType": "SlippyTile"
+            }
+        ],
+        "updatedAt": "2023-01-10T17:43:46.182000",
+        "updatedBy": {
+            "auth0Id": "64ieq4PqRtFt2yTX09Jhct1emVMbkHny",
+            "avatarUrls": {
+                "url16": null,
+                "url24": null,
+                "url32": null,
+                "url48": null
+            },
+            "displayName": "Map Services",
+            "emailAddress": null,
+            "id": "0137abce-407a-46db-bd56-e2fcf9ed1cd6",
+            "oktaId": "0oa9emor0hNphYJ3f4x7",
+            "timeZone": null
+        },
+        "viewOffset": {
+            "lat": 1.3547111750290377,
+            "lng": 103.69548797607422
+        }
+    },
+    "metadata": {
+        "branchId": 75,
+        "branchName": "sg-cetran",
+        "branchTags": [
+            "production",
+            "stable"
+        ],
+        "createdAt": "2022-10-05T18:11:13.741504+00:00",
+        "id": 5751,
+        "message": "MAPOPS-4474: Cetran Version 2.6 to 2.8 Update"
+    },
+    "package": {
+        "apiUrl": "https://editor.maps.motional.com",
+        "basemapGpkg": "map.gpkg",
+        "buildId": "4089",
+        "checksum": {
+            "icp-mini.dat": "f19a11362ffe4021703ff81f1a9a4278eb146237727f5b822b0cfe12dc5b3bb0",
+            "icp.dat": "4f18793a357b923cb9fd3c41b5e00832a10b0f01ee223f0971c1274aba121d40",
+            "map.gpkg": "7491fbf104bb23d83a7e7aca9e13572be1dcf5e2d7b6a2f6265ddab2fd5820f9"
+        },
+        "fullGpkg": "map.gpkg",
+        "geographicCoordSystem": "epsg:4326",
+        "gpkgSchemaVersion": "4.5",
+        "icp": "icp.dat",
+        "icpMini": "icp-mini.dat",
+        "icpVersion": "2",
+        "mapCliVersion": "11.26.0",
+        "mapId": "5751",
+        "mapName": "sg-cetran",
+        "projectedCoordSystem": "epsg:32648",
+        "semanticDir": "semantic",
+        "semanticGpkg": "map.gpkg",
+        "utm": {
+            "hemisphere": "N",
+            "zone": 48
+        }
+    },
+    "parameters": {
+        "basemapVersion": "2022-05-24_03-29-00-GMT",
+        "locationKey": "sg-cetran",
+        "locationVersion": 4879,
+        "minTurnRadius": 5.0,
+        "minTurnRadiusBike": 1.0,
+        "minTurnRadiusNonAv": 4.0,
+        "trafficHandedness": "Left",
+        "vehicleType": "pacifica"
+    }
+}

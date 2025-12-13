@@ -1,0 +1,144 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+filegroup(
+    name = "data",
+    srcs = glob(["data/**"]),
+)
+
+cc_test(
+    name = "AlgoTest",
+    size = "small",
+    srcs = ["AlgoTest.cpp"],
+    data = ["data"],
+    deps = [
+        "//algo/basic:Algo",
+        "//core/utils:Utils",
+        "@catch2//:catch2_main",
+    ],
+)
+
+cc_test(
+    name = "SmallPrimesTest",
+    size = "small",
+    srcs = ["SmallPrimesTest.cpp"],
+    deps = [
+        "//algo/basic:SmallPrimes",
+        "@catch2//:catch2_main",
+    ],
+)
+
+cc_test(
+    name = "StringTest",
+    size = "small",
+    srcs = ["StringTest.cpp"],
+    deps = [
+        "//algo/basic:String",
+        "@catch2//:catch2_main",
+    ],
+)
+
+cc_test(
+    name = "SortingTest",
+    size = "small",
+    srcs = ["SortingTest.cpp"],
+    deps = [
+        "//algo/basic:Sorting",
+        "@catch2//:catch2_main",
+    ],
+)
+
+cc_test(
+    name = "TowerOfHanoiTest",
+    size = "small",
+    srcs = ["TowerOfHanoiTest.cpp"],
+    deps = [
+        "//algo/basic:TowerOfHanoi",
+        "@catch2//:catch2_main",
+    ],
+)
+
+cc_test(
+    name = "SinglyLinkedListTest",
+    size = "small",
+    srcs = ["SinglyLinkedListTest.cpp"],
+    deps = [
+        "//algo/basic:SinglyLinkedList",
+        "@catch2//:catch2_main",
+    ],
+)
+
+cc_test(
+    name = "BinaryTreeTest",
+    size = "small",
+    srcs = ["BinaryTreeTest.cpp"],
+    data = ["data"],
+    deps = [
+        "//algo/basic:BinaryTree",
+        "//core/utils:Utils",
+        "@catch2//:catch2_main",
+    ],
+)
+
+cc_test(
+    name = "BinarySearchTreeTest",
+    size = "small",
+    srcs = ["BinarySearchTreeTest.cpp"],
+    deps = [
+        "//algo/basic:BinarySearchTree",
+        "@catch2//:catch2_main",
+    ],
+)
+
+cc_test(
+    name = "MinHeapTest",
+    size = "small",
+    srcs = ["MinHeapTest.cpp"],
+    deps = [
+        "//algo/basic:MinHeap",
+        "@catch2//:catch2_main",
+    ],
+)
+
+cc_test(
+    name = "HuffmanCodeTest",
+    size = "small",
+    srcs = ["HuffmanCodeTest.cpp"],
+    data = ["data"],
+    deps = [
+        "//algo/basic:HuffmanCode",
+        "//core/utils:Utils",
+        "@catch2//:catch2_main",
+    ],
+)
+
+cc_test(
+    name = "HashTableTest",
+    size = "small",
+    srcs = ["HashTableTest.cpp"],
+    data = ["data"],
+    deps = [
+        "//algo/basic:HashTable",
+        "//core/utils:Utils",
+        "@catch2//:catch2_main",
+    ],
+)
+
+cc_test(
+    name = "LRUCacheTest",
+    size = "small",
+    srcs = ["LRUCacheTest.cpp"],
+    deps = [
+        "//algo/basic:LRUCache",
+        "@catch2//:catch2_main",
+    ],
+)
+
+cc_test(
+    name = "TrieTest",
+    size = "small",
+    srcs = ["TrieTest.cpp"],
+    deps = [
+        "//algo/basic:Trie",
+        "@catch2//:catch2_main",
+    ],
+)

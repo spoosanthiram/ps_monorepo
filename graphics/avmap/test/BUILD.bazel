@@ -1,0 +1,29 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "EpsgDataTest",
+    srcs = ["EpsgDataTest.cpp"],
+    deps = [
+        "//core/testing:Catch2Main",
+        "//graphics/avmap:EpsgData",
+    ],
+)
+
+cc_test(
+    name = "GpkgMapListTest",
+    size = "small",
+    srcs = ["GpkgMapListTest.cpp"],
+    deps = [
+        "//core/testing:Catch2Main",
+        "//graphics/avmap:GpkgMapList",
+    ],
+)
+
+cc_test(
+    name = "GpkgVectorReaderTest",
+    srcs = ["GpkgVectorReaderTest.cpp"],
+    deps = [
+        "//core/testing:Catch2Main",
+        "//graphics/avmap:GpkgVectorReader",
+    ],
+)

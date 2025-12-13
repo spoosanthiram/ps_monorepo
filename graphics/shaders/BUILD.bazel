@@ -1,0 +1,10 @@
+filegroup(
+    name = "shaders",
+    srcs = glob([
+        "*.vert",
+        "*.frag",
+    ]),
+    visibility = [
+        "//graphics/ui:__subpackages__",
+    ],
+)

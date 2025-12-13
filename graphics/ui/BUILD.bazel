@@ -1,0 +1,37 @@
+load("//bazel:ps_cc_rules.bzl", "ps_cc_library")
+load("@rules_qt//:qt.bzl", "qt_cc_binary")
+
+ps_cc_library(
+    name = "OpenGLWidget",
+    srcs = ["OpenGLWidget.cpp"],
+    hdrs = ["OpenGLWidget.h"],
+    data = [
+        "//graphics/data:models",
+        "//graphics/shaders",
+    ],
+    deps = [
+        # "//graphics/avmap:PriorMap",
+        "//graphics/geometry:ViewpointCamera",
+        "//graphics/opengl:OpenGLObject",
+        "@rules_qt//:qt_opengl_widgets",
+        "@spdlog",
+    ],
+)
+
+ps_cc_library(
+    name = "MainWindow",
+    srcs = ["MainWindow.cpp"],
+    hdrs = ["MainWindow.h"],
+    deps = [
+        ":OpenGLWidget",
+        "@rules_qt//:qt_widgets",
+    ],
+)
+
+qt_cc_binary(
+    name = "Viewer",
+    srcs = ["main.cpp"],
+    deps = [
+        ":MainWindow",
+    ],
+)

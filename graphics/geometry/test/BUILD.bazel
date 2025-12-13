@@ -1,0 +1,25 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "ModelReaderTest",
+    srcs = ["ModelReaderTest.cpp"],
+    data = [
+        "//graphics/data:models",
+    ],
+    deps = [
+        "//core/testing:Catch2Main",
+        "//graphics/geometry:ModelReader",
+    ],
+)
+
+cc_test(
+    name = "gltf_reader_test",
+    srcs = ["gltf_reader_test.cpp"],
+    data = [
+        "//graphics/data:models",
+    ],
+    deps = [
+        "//core/testing:Catch2Main",
+        "//graphics/geometry:gltf_reader",
+    ],
+)

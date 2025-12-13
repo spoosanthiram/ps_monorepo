@@ -1,0 +1,48 @@
+#pragma once
+
+#include "GraphicsGeometry.h"
+
+#include "core/utils/ClassHelper.h"
+
+#include <Eigen/Geometry>
+
+namespace Ps::Graphics {
+
+/// @brief ViewpointCamera abstracts eye location with rotation
+class ViewpointCamera
+{
+public:
+    ViewpointCamera();
+    ~ViewpointCamera() = default;
+
+    COPY_CONSTRUCTOR(ViewpointCamera) = delete;
+    MOVE_CONSTRUCTOR(ViewpointCamera) = delete;
+    COPY_ASSIGNMENT(ViewpointCamera) = delete;
+    MOVE_ASSIGNMENT(ViewpointCamera) = delete;
+
+    /// @brief Get the view matrix
+    const Eigen::Matrix4d& get_view_matrix() const { return view_matrix_; }
+
+    /// @brief Zoom by moving the eye point
+    void zoom(int steps);
+
+    /// @brief Rotate the viewpoint using screen positions modeling hemisphere
+    void rotate(const Point2d& start_position, const Point2d& end_position);
+
+private:
+    /// @brief Project screen position to an unit sphere
+    Vector3d project_to_sphere(const Point2d& position) const;
+
+    /// @brief update the view matrix based on current transformation
+    void update_view_matrix();
+
+private:
+    Point3d eye_position_{0.0, 0.0, 5.0};
+
+    double zoom_level_{0.5};
+    Eigen::Transform<double, 3, Eigen::Affine> eye_rotation_matrix_;
+
+    Eigen::Matrix4d view_matrix_;
+};
+
+}  // namespace Ps::Graphics

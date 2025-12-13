@@ -1,0 +1,28 @@
+load("@rules_qt//:qt_libraries.bzl", "QT_LIBRARIES")
+
+[
+    cc_library(
+        name = "qt_%s" % name,
+        visibility = ["//visibility:public"],
+        deps = dependencies + select({
+            "@platforms//os:linux": ["@qt_linux_x86_64//:qt_%s_linux" % name],
+        }),
+    )
+    for name, _, _, dependencies in QT_LIBRARIES
+]
+
+cc_library(
+    name = "qt_hdrs",
+    visibility = ["//visibility:public"],
+    deps = select({
+        "@platforms//os:linux": ["@qt_linux_x86_64//:qt_hdrs"],
+    }),
+)
+
+all_qt_libs = [":qt_%s" % name for name, _, _, _ in QT_LIBRARIES]
+
+cc_library(
+    name = "qt",
+    visibility = ["//visibility:public"],
+    deps = all_qt_libs + [":qt_hdrs"],
+)

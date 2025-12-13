@@ -1,0 +1,11 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "matrix_test",
+    size = "small",
+    srcs = ["matrix_test.cpp"],
+    deps = [
+        "//ai/linear_algebra:matrix",
+        "@catch2//:catch2_main",
+    ],
+)

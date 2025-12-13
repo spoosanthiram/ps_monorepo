@@ -1,0 +1,34 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+load("//bazel:ps_cc_rules.bzl", "ps_cc_library")
+
+ps_cc_library(
+    name = "StrInt",
+    srcs = ["StrInt.cpp"],
+    hdrs = ["StrInt.h"],
+    visibility = [":__subpackages__"],
+)
+
+ps_cc_library(
+    name = "Int",
+    srcs = ["Int.cpp"],
+    hdrs = ["Int.h"],
+    visibility = [":__subpackages__"],
+)
+
+ps_cc_library(
+    name = "multiples",
+    srcs = ["multiples.cpp"],
+    hdrs = ["multiples.h"],
+    deps = [
+        ":Int",
+    ],
+)
+
+cc_binary(
+    name = "roblox",
+    srcs = ["main.cpp"],
+    deps = [
+        ":StrInt",
+        ":multiples",
+    ],
+)

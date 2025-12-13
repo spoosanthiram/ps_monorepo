@@ -1,0 +1,71 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "PrimitivesTest",
+    size = "small",
+    srcs = ["PrimitivesTest.cpp"],
+    deps = [
+        "//algo/prep/epi:Primitives",
+        "@catch2//:catch2_main",
+    ],
+)
+
+cc_test(
+    name = "ArraysTest",
+    size = "small",
+    srcs = ["ArraysTest.cpp"],
+    deps = [
+        "//algo/prep/epi:Arrays",
+        "@catch2//:catch2_main",
+    ],
+)
+
+# cc_test(
+#     name = "StringsTest",
+#     size = "small",
+#     srcs = ["StringsTest.cpp"],
+#     deps = [
+#         "//algo/prep:Strings",
+#         "@catch2//:catch2_main",
+#     ],
+# )
+
+# cc_test(
+#     name = "RecursionTest",
+#     size = "small",
+#     srcs = ["RecursionTest.cpp"],
+#     deps = [
+#         "//algo/prep:Recursion",
+#         "@catch2//:catch2_main",
+#     ],
+# )
+
+# cc_test(
+#     name = "HackerRankTest",
+#     size = "small",
+#     srcs = ["HackerRankTest.cpp"],
+#     deps = [
+#         "//algo/prep:HackerRank",
+#         "@catch2//:catch2_main",
+#     ],
+# )
+
+# cc_test(
+#     name = "CircularQueueTest",
+#     size = "small",
+#     srcs = ["CircularQueueTest.cpp"],
+#     deps = [
+#         "//algo/prep:CircularQueue",
+#         "@catch2//:catch2_main",
+#     ],
+# )
+
+# cc_test(
+#     name = "CircularBufferTest",
+#     size = "small",
+#     srcs = ["CircularBufferTest.cpp"],
+#     deps = [
+#         "//algo/prep:CircularBuffer",
+#         "@catch2//:catch2_main",
+#     ],
+# )

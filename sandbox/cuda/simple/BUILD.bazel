@@ -1,0 +1,12 @@
+load("@rules_cuda//cuda:defs.bzl", "cuda_binary")
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+
+cc_binary(
+    name = "add_c++",
+    srcs = ["add.cpp"],
+)
+
+cuda_binary(
+    name = "add_cuda",
+    srcs = ["add.cu"],
+)

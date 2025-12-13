@@ -1,0 +1,58 @@
+load("//bazel:ps_cc_rules.bzl", "ps_cc_library")
+
+ps_cc_library(
+    name = "GraphicsGeometry",
+    hdrs = ["GraphicsGeometry.h"],
+    visibility = [
+        "//graphics/avmap:__subpackages__",
+        "//graphics/opengl:__subpackages__",
+    ],
+    deps = [
+        "//core/utils:ClassHelper",
+        "@eigen",
+    ],
+)
+
+ps_cc_library(
+    name = "ModelReader",
+    srcs = ["ModelReader.cpp"],
+    hdrs = ["ModelReader.h"],
+    visibility = [
+        ":__subpackages__",
+        "//graphics/opengl:__subpackages__",
+    ],
+    deps = [
+        ":GraphicsGeometry",
+        "@spdlog",
+    ],
+)
+
+ps_cc_library(
+    name = "gltf_reader",
+    srcs = ["gltf_reader.cpp"],
+    hdrs = ["gltf_reader.h"],
+    visibility = [
+        ":__subpackages__",
+        "//graphics/opengl:__subpackages__",
+    ],
+    deps = [
+        "//core/utils:base64",
+        "@eigen",
+        "@nlohmann-json",
+        "@spdlog",
+        "@draco",
+    ],
+)
+
+ps_cc_library(
+    name = "ViewpointCamera",
+    srcs = ["ViewpointCamera.cpp"],
+    hdrs = ["ViewpointCamera.h"],
+    visibility = [
+        "//graphics/ui:__subpackages__",
+    ],
+    deps = [
+        ":GraphicsGeometry",
+        "//core/utils:ClassHelper",
+    ],
+)
