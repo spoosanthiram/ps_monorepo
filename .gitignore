@@ -1,0 +1,9 @@
+.build
+.vscode
+bazel-*
+*.pb.cc
+*.pb.h
+.DS_Store
+CMakeLists.txt.user
+node_modules
+*.pyc
