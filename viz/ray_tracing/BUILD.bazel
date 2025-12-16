@@ -1,9 +1,19 @@
 load("@rules_cc//cc:defs.bzl", "cc_binary")
+load("//bazel:ps_cc_rules.bzl", "ps_cc_library")
+
+ps_cc_library(
+    name = "ray",
+    hdrs = ["ray.h"],
+    deps = [
+        "//viz/geometry:viz_defs",
+    ],
+)
 
 cc_binary(
     name = "ray_tracing",
     srcs = ["ray_tracing.cpp"],
     deps = [
+        ":ray",
         "@spdlog",
     ],
 )

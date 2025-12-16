@@ -1,0 +1,10 @@
+load("//bazel:ps_cc_rules.bzl", "ps_cc_library")
+
+ps_cc_library(
+    name = "viz_defs",
+    hdrs = ["viz_defs.h"],
+    visibility = [
+        "//viz:__subpackages__",
+    ],
+    deps = ["@eigen"],
+)
