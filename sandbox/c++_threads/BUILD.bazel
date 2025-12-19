@@ -14,3 +14,8 @@ cc_binary(
     name = "shared_data",
     srcs = ["shared_data.cpp"],
 )
+
+cc_binary(
+    name = "data_sync",
+    srcs = ["data_sync.cpp"],
+)
