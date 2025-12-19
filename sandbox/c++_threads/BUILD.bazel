@@ -19,3 +19,8 @@ cc_binary(
     name = "data_sync",
     srcs = ["data_sync.cpp"],
 )
+
+cc_binary(
+    name = "future",
+    srcs = ["future.cpp"],
+)
