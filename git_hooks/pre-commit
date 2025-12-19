@@ -1,16 +1,7 @@
 #!/bin/sh
 
-# Stash any uncommitted changes to avoid formatting them
-git stash -q --keep-index
-
-# Format staged C/C++ files
-git clang-format --staged
-
-# Unstash changes
-git stash pop -q
-
 # Check for formatting changes and abort the commit
-if ! git diff --exit-code --quiet; then
-    echo "clang-format made changes. Please review and add them before attempting commit again"
+if ! git clang-format --staged --diff -q; then
+    echo "\nYour staged files are not formatted correctly. Please run 'git clang-format' to update and try commit again\n"
 	exit 1
 fi
