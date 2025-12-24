@@ -1,0 +1,25 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+load("//bazel:ps_cc_rules.bzl", "ps_cc_library")
+
+ps_cc_library(
+    name = "station",
+    srcs = ["station.cpp"],
+    hdrs = ["station.h"],
+)
+
+ps_cc_library(
+    name = "charging_network",
+    srcs = ["charging_network.cpp"],
+    hdrs = ["charging_network.h"],
+    deps = [
+        ":station",
+    ],
+)
+
+cc_binary(
+    name = "uptime",
+    srcs = ["uptime.cpp"],
+    deps = [
+        ":charging_network",
+    ],
+)
