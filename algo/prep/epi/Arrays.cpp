@@ -127,7 +127,7 @@ double buy_and_sell_stock_once(const std::vector<double>& prices)
     return max_profit;
 }
 
-std::vector<uint32_t> generate_primes(uint32_t n)
+std::vector<uint32_t> generate_primes(int32_t n)
 {
     if (n < 2) {
         return std::vector<uint32_t>{};
@@ -136,11 +136,11 @@ std::vector<uint32_t> generate_primes(uint32_t n)
     std::vector<uint32_t> primes;
     primes.push_back(2);
 
-    const auto size = static_cast<uint32_t>(std::floor(0.5 * (static_cast<int32_t>(n) - 3)) + 1);
+    const auto size = static_cast<uint32_t>(std::floor(0.5 * (n - 3)) + 1);
     std::vector<bool> is_prime(size, true);
-    for (size_t i = 0; i < size; ++i) {
+    for (uint64_t i = 0; i < size; ++i) {
         if (is_prime[i]) {
-            const auto p = static_cast<uint32_t>(2 * i + 3);
+            const auto p = 2 * i + 3;
             primes.push_back(p);
             for (auto j = 2 * i * i + 6 * i + 3; j < size; j += p) {
                 is_prime[j] = false;

@@ -46,7 +46,7 @@ double buy_and_sell_stock_once(const std::vector<double>& prices);
 /// @param n - Up to the number for which primes to be generated
 /// @return Array of primes up to and including N
 ///
-std::vector<uint32_t> generate_primes(uint32_t n);
+std::vector<uint32_t> generate_primes(int32_t n);
 
 /// @brief EPI 6.9 Permute the Elements of an Array
 ///

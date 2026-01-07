@@ -111,15 +111,15 @@ TEST_CASE("Arrays Generate Primes")
                                                 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97});
     }
     {
-        const auto primes = Ps::Algo::generate_primes(16777215);
+        const auto primes = Ps::Algo::generate_primes(16'777'215);
         CHECK(primes[99] == 541);
-        CHECK(primes[499] == 3571);
-        CHECK(primes[875] == 6803);
-        CHECK(primes[4999] == 48611);
-        CHECK(primes[9999] == 104729);
-        CHECK(primes[99999] == 1299709);
-        CHECK(primes[500000] == 7368791);
-        CHECK(primes[1000000] == 15485867);
+        CHECK(primes[499] == 3'571);
+        CHECK(primes[875] == 6'803);
+        CHECK(primes[4'999] == 48'611);
+        CHECK(primes[9'999] == 104'729);
+        CHECK(primes[99'999] == 1'299'709);
+        CHECK(primes[500'000] == 7'368'791);
+        CHECK(primes[1'000'000] == 15'485'867);
     }
 }
 
