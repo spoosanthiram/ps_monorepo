@@ -1,7 +1,7 @@
-#include "ai/linear_algebra/matrix.h"
+#include "matrix.h"
 
-#include <iostream>
 #include <format>
+#include <iostream>
 
 namespace ps::ai {
 
@@ -45,7 +45,7 @@ void Matrix::print() const
 {
     for (uint32_t i = 0; i < rows_; ++i) {
         for (uint32_t j = 0; j < cols_; ++j) {
-            std::cout << std::format("{:+5.0f}",matrix_[i * cols_ + j]) << ' ';
+            std::cout << std::format("{:+5.0f}", matrix_[i * cols_ + j]) << ' ';
         }
         std::cout << '\n';
     }

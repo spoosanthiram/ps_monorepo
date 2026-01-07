@@ -1,4 +1,4 @@
-#include "ai/linear_algebra/matrix.h"
+#include "math/linear_algebra/matrix.h"
 
 #include <catch2/catch_test_macros.hpp>
 
@@ -10,7 +10,13 @@ TEST_CASE("Matrix Construction And Access")
     REQUIRE(m(0, 0) == 0.0);
     REQUIRE(m(1, 2) == 3.0);
 
-    std::vector<double> m2_elements{1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0};
+    // clang-format off
+    std::vector<double> m2_elements{
+        1.0, 2.0, 3.0,
+        4.0, 5.0, 6.0,
+        7.0, 8.0, 9.0};
+    // clang-format on
+
     ps::ai::Matrix m2{3, 3, m2_elements};
     REQUIRE(m2(0, 0) == 1.0);
     REQUIRE(m2(0, 1) == 2.0);
@@ -27,11 +33,14 @@ TEST_CASE("Matrix Construction And Access")
 
 TEST_CASE("Matrix Gaussian Elimination")
 {
+    // clang-format off
     std::vector<double> elements{
          2.0,  1.0,  1.0,  5.0,
          4.0, -6.0,  0.0, -2.0,
         -2.0,  7.0,  2.0,  9.0
     };
+    // clang-format on
+
     ps::ai::Matrix m{3, 4, elements};
     m.apply_gaussian_elimination();
     REQUIRE(m(0, 0) == 2.0);
