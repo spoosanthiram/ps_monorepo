@@ -271,6 +271,41 @@ bool is_valid_sudoku(const std::vector<std::vector<uint32_t>>& sudoku)
     return true;
 }
 
+std::vector<int> spiral_order(const std::vector<std::vector<int>>& array_2d)
+{
+    if (array_2d.empty() || array_2d.size() != array_2d.back().size()) {
+        return std::vector<int>{};
+    }
+
+    std::vector<int> result;
+
+    int32_t p = 0;
+    int32_t q = array_2d.size() - 1;
+    while (p <= q) {
+        if (p == q) {
+            result.push_back(array_2d[p][q]);
+        }
+        else {
+            for (auto j = p; j < q; ++j) {
+                result.push_back(array_2d[p][j]);
+            }
+            for (auto i = p; i < q; ++i) {
+                result.push_back(array_2d[i][q]);
+            }
+            for (auto j = q; j > p; --j) {
+                result.push_back(array_2d[q][j]);
+            }
+            for (auto i = q; i > p; --i) {
+                result.push_back(array_2d[i][p]);
+            }
+        }
+        ++p;
+        --q;
+    }
+
+    return result;
+}
+
 std::vector<std::vector<int>> pascal_triangle(int n)
 {
     std::vector<std::vector<int>> pt;

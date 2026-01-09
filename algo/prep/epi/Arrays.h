@@ -68,6 +68,10 @@ void random_sample(std::vector<int>& a, uint32_t k);
 ///
 bool is_valid_sudoku(const std::vector<std::vector<uint32_t>>& sudoku);
 
+/// @brief EPI 6.17 Compute the Spiral Ordering of a 2D Array
+///
+std::vector<int> spiral_order(const std::vector<std::vector<int>>& array_2d);
+
 /// @brief Pascal Triangle
 /// @param n
 /// @return
