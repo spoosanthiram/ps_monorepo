@@ -175,3 +175,37 @@ TEST_CASE("Arrays Pascal Triangle")
     REQUIRE(pt[4] == std::vector<int>{1, 4, 6, 4, 1});
     REQUIRE(pt[5] == std::vector<int>{1, 5, 10, 10, 5, 1});
 }
+
+TEST_CASE("Arrays Spiral Order")
+{
+    CHECK(Ps::Algo::spiral_order(std::vector<std::vector<int>>{}) == std::vector<int>{});
+    CHECK(Ps::Algo::spiral_order(std::vector<std::vector<int>>{{1}}) == std::vector<int>{1});
+    // 2x2 array
+    {
+        std::vector<std::vector<int>> array_2d{
+            {1, 2},
+            {3, 4}
+        };
+        CHECK(Ps::Algo::spiral_order(array_2d) == std::vector<int>{1, 2, 4, 3});
+    }
+    // 3x3 array
+    {
+        std::vector<std::vector<int>> array_2d{
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+        CHECK(Ps::Algo::spiral_order(array_2d) == std::vector<int>{1, 2, 3, 6, 9, 8, 7, 4, 5});
+    }
+    // 4x4 array
+    {
+        std::vector<std::vector<int>> array_2d{
+            {1,  2,  3,  4 },
+            {5,  6,  7,  8 },
+            {9,  10, 11, 12},
+            {13, 14, 15, 16}
+        };
+        std::vector<int> expected{1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10};
+        CHECK(Ps::Algo::spiral_order(array_2d) == expected);
+    }
+}
