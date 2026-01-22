@@ -165,17 +165,6 @@ TEST_CASE("Arrays Sudoku Check")
     REQUIRE_FALSE(Ps::Algo::is_valid_sudoku(sudoku));
 }
 
-TEST_CASE("Arrays Pascal Triangle")
-{
-    const auto pt = Ps::Algo::pascal_triangle(5);
-    REQUIRE(pt[0] == std::vector<int>{1});
-    REQUIRE(pt[1] == std::vector<int>{1, 1});
-    REQUIRE(pt[2] == std::vector<int>{1, 2, 1});
-    REQUIRE(pt[3] == std::vector<int>{1, 3, 3, 1});
-    REQUIRE(pt[4] == std::vector<int>{1, 4, 6, 4, 1});
-    REQUIRE(pt[5] == std::vector<int>{1, 5, 10, 10, 5, 1});
-}
-
 TEST_CASE("Arrays Spiral Order")
 {
     CHECK(Ps::Algo::spiral_order(std::vector<std::vector<int>>{}) == std::vector<int>{});
@@ -208,4 +197,76 @@ TEST_CASE("Arrays Spiral Order")
         std::vector<int> expected{1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10};
         CHECK(Ps::Algo::spiral_order(array_2d) == expected);
     }
+}
+
+TEST_CASE("Arrays Rotate 2D Array")
+{
+    // empty array
+    {
+        std::vector<std::vector<int>> A;
+        Ps::Algo::rotate(A);
+        REQUIRE(A.empty());
+    }
+    // 1x1 array
+    {
+        std::vector<std::vector<int>> A{{1}};
+        Ps::Algo::rotate(A);
+        CHECK(A == std::vector<std::vector<int>>{{1}});
+    }
+    // 2x2 array
+    {
+        std::vector<std::vector<int>> A{
+            {1, 2},
+            {3, 4}
+        };
+        Ps::Algo::rotate(A);
+        std::vector<std::vector<int>> expected{
+            {3, 1},
+            {4, 2}
+        };
+        CHECK(A == expected);
+    }
+    // 3x3 array
+    {
+        std::vector<std::vector<int>> A{
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+        Ps::Algo::rotate(A);
+        std::vector<std::vector<int>> expected{
+            {7, 4, 1},
+            {8, 5, 2},
+            {9, 6, 3}
+        };
+        CHECK(A == expected);
+    }
+    // 4x4 array
+    {
+        std::vector<std::vector<int>> A{
+            {1,  2,  3,  4 },
+            {5,  6,  7,  8 },
+            {9,  10, 11, 12},
+            {13, 14, 15, 16}
+        };
+        Ps::Algo::rotate(A);
+        std::vector<std::vector<int>> expected{
+            {13, 9,  5, 1},
+            {14, 10, 6, 2},
+            {15, 11, 7, 3},
+            {16, 12, 8, 4}
+        };
+        CHECK(A == expected);
+    }
+}
+
+TEST_CASE("Arrays Pascal Triangle")
+{
+    const auto pt = Ps::Algo::pascal_triangle(5);
+    REQUIRE(pt[0] == std::vector<int>{1});
+    REQUIRE(pt[1] == std::vector<int>{1, 1});
+    REQUIRE(pt[2] == std::vector<int>{1, 2, 1});
+    REQUIRE(pt[3] == std::vector<int>{1, 3, 3, 1});
+    REQUIRE(pt[4] == std::vector<int>{1, 4, 6, 4, 1});
+    REQUIRE(pt[5] == std::vector<int>{1, 5, 10, 10, 5, 1});
 }

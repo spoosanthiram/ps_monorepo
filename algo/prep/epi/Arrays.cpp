@@ -306,13 +306,31 @@ std::vector<int> spiral_order(const std::vector<std::vector<int>>& array_2d)
     return result;
 }
 
-std::vector<std::vector<int>> pascal_triangle(int n)
+void rotate(std::vector<std::vector<int>>& A)
+{
+    if (A.empty() || A.size() != A.back().size()) {
+        return;
+    }
+
+    size_t i = 0;
+    size_t j = A.size() - 1;
+
+    while (i < j) {
+        for (size_t k = i; k < j; ++k) {
+            auto tmp = A[i][i + k];
+            A[i][i + k] = A[j - k][i];
+            A[j - k][i] = A[j][j - k];
+            A[j][j - k] = A[i + k][j];
+            A[i + k][j] = tmp;
+        }
+        ++i;
+        --j;
+    }
+}
+
+std::vector<std::vector<int>> pascal_triangle(uint32_t n)
 {
     std::vector<std::vector<int>> pt;
-
-    if (n < 0) {
-        return pt;
-    }
 
     pt.emplace_back(std::vector<int>{1});
 
@@ -320,7 +338,7 @@ std::vector<std::vector<int>> pascal_triangle(int n)
     // 1 -> 1, 1
     // 2 -> 1, 2, 1
 
-    for (size_t i = 1; i <= static_cast<size_t>(n); ++i) {
+    for (size_t i = 1; i <= n; ++i) {
         std::vector<int> current_row;
         current_row.push_back(1);
 
