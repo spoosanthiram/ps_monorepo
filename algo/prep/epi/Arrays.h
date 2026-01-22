@@ -72,9 +72,12 @@ bool is_valid_sudoku(const std::vector<std::vector<uint32_t>>& sudoku);
 ///
 std::vector<int> spiral_order(const std::vector<std::vector<int>>& array_2d);
 
-/// @brief Pascal Triangle
-/// @param n
-/// @return
-std::vector<std::vector<int>> pascal_triangle(int n);
+/// @brief EPI 6.18 Rotate a 2D Array
+///
+void rotate(std::vector<std::vector<int>>& A);
+
+/// @brief EPI 6.19 Compute Rows in Pascal's Triangle
+///
+std::vector<std::vector<int>> pascal_triangle(uint32_t n);
 
 } // namespace Ps::Algo
