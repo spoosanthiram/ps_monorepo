@@ -1,3 +1,4 @@
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
 load("//bazel:ps_cc_rules.bzl", "ps_cc_library")
 
 ps_cc_library(
