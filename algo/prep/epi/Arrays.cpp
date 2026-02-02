@@ -4,6 +4,7 @@
 #include <cmath>
 #include <limits>
 #include <random>
+#include <array>
 
 namespace Ps::Algo {
 

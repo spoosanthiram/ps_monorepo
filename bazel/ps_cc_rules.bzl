@@ -1,3 +1,5 @@
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+
 PS_CXXOPTS = [
     "-Werror",
     "-Wpedantic",
@@ -10,7 +12,7 @@ PS_CXXOPTS = [
 ]
 
 def ps_cc_library(**kwargs):
-    native.cc_library(
+    cc_library(
         copts = PS_CXXOPTS + kwargs.get("copts", []),
         **kwargs
     )

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <ranges>
 #include <vector>
+#include <format>
 
 template <typename T>
 concept Equality_comparable = requires(T x, T y) {
