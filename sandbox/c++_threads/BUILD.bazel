@@ -24,3 +24,8 @@ cc_binary(
     name = "future",
     srcs = ["future.cpp"],
 )
+
+cc_binary(
+    name = "shared_lock",
+    srcs = ["shared_lock.cpp"],
+)
