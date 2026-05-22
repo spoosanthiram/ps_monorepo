@@ -23,7 +23,6 @@ ps_cc_library(
         ":OpenGLInterface",
         "//core/utils:ClassHelper",
         "//graphics/geometry:GraphicsGeometry",
-        "@fmt",
     ],
 )
 

@@ -1,6 +1,5 @@
 #include "ModelReader.h"
 
-#include <fmt/format.h>
 #include <spdlog/spdlog.h>
 
 #include <fstream>
@@ -138,4 +137,4 @@ GraphicsGeometry read_model(const fs::path& file_path)
     return GraphicsGeometry{};
 }
 
-}  // namespace Ps::Graphics
+} // namespace Ps::Graphics
