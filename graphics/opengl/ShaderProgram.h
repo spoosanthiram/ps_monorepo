@@ -44,4 +44,4 @@ private:
     std::unordered_map<std::string, GLint> location_map_;
 };
 
-}  // namespace Ps::Graphics
+} // namespace Ps::Graphics

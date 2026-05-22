@@ -24,4 +24,4 @@ private:
     bool window_closed_{false};
 };
 
-}  // namespace Ps::Graphics
+} // namespace Ps::Graphics

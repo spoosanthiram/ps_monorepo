@@ -7,4 +7,4 @@ namespace Ps::Core {
 #define COPY_ASSIGNMENT(className) className& operator=(const className&)
 #define MOVE_ASSIGNMENT(className) className& operator=(className&&)
 
-}  // namespace Ps::Core
+} // namespace Ps::Core

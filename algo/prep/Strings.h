@@ -13,7 +13,7 @@ bool is_palindrome(const std::string& str);
 /// @brief Remove 'b' and replace 'a' with two 'd's
 ///        Ex: {a, c, d, b, b, c, a} -> {d, d, c, d, c, d, d}
 /// @param str Array of chars
-/// @param size 
+/// @param size
 /// @return Final size
 int remove_replace(char str[], int size);
 

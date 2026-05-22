@@ -8,4 +8,4 @@ namespace Ps::Graphics {
 
 GraphicsGeometry read_model(const std::filesystem::path& file_path);
 
-}  // namespace Ps::Graphics
+} // namespace Ps::Graphics

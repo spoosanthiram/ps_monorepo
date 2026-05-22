@@ -110,4 +110,4 @@ private:
     std::vector<Mesh> meshes_;
 };
 
-}  // namespace Ps::Graphics
+} // namespace Ps::Graphics

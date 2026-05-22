@@ -52,4 +52,4 @@ private:
     GLuint shader_id_{0};
 };
 
-}  // namespace Ps::Graphics
+} // namespace Ps::Graphics

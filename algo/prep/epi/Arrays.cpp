@@ -1,10 +1,10 @@
 #include "algo/prep/epi/Arrays.h"
 
 #include <algorithm>
+#include <array>
 #include <cmath>
 #include <limits>
 #include <random>
-#include <array>
 
 namespace Ps::Algo {
 

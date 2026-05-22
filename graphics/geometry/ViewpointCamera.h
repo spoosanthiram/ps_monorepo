@@ -45,4 +45,4 @@ private:
     Eigen::Matrix4d view_matrix_;
 };
 
-}  // namespace Ps::Graphics
+} // namespace Ps::Graphics

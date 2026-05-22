@@ -22,4 +22,4 @@ private:
     static OpenGLFunctions* gl_funcs_;
 };
 
-}  // namespace Ps::Graphics
+} // namespace Ps::Graphics
