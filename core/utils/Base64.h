@@ -10,4 +10,4 @@ int32_t base64_char_to_value(char ch);
 
 std::vector<unsigned char> base64_decode(std::string_view base64_str);
 
-}  // namespace Ps::Core
+} // namespace Ps::Core

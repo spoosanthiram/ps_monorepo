@@ -21,4 +21,4 @@ void try_sqlite(int result);
 ///
 SQLiteStmt prepare_sqlite_stmt(sqlite3* db, std::string_view sql);
 
-}  // namespace Ps::Core
+} // namespace Ps::Core

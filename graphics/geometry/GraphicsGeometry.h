@@ -60,4 +60,4 @@ struct GraphicsGeometry
     std::vector<uint32_t> indices;
 };
 
-}  // namespace Ps::Graphics
+} // namespace Ps::Graphics

@@ -56,4 +56,4 @@ private:
     Point2i previous_mouse_position_{0, 0};
 };
 
-}  // namespace Ps::Graphics
+} // namespace Ps::Graphics

@@ -49,4 +49,4 @@ private:
     uint32_t indices_size_{0};
 };
 
-}  // namespace Ps::Graphics
+} // namespace Ps::Graphics

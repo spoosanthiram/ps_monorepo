@@ -18,4 +18,4 @@ std::ifstream open_stream(const std::filesystem::path& file_path);
  */
 std::vector<int> read_integers(const std::filesystem::path& file_path);
 
-}  // namespace Ps::Core
+} // namespace Ps::Core

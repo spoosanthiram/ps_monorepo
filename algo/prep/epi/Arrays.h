@@ -63,7 +63,7 @@ std::vector<int> next_permutation(const std::vector<int>& perm);
 void random_sample(std::vector<int>& a, uint32_t k);
 
 /// @brief EPI 6.16 The Sudoku Checker Problem
-/// @param sudoku 
+/// @param sudoku
 /// @return True if sudoku is valid, False otherwise
 ///
 bool is_valid_sudoku(const std::vector<std::vector<uint32_t>>& sudoku);
