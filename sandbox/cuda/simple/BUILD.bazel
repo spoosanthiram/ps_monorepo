@@ -9,4 +9,5 @@ cc_binary(
 cuda_binary(
     name = "add_cuda",
     srcs = ["add.cu"],
+    tags = ["manual"],
 )

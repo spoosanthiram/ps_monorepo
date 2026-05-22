@@ -1,17 +1,12 @@
 #include "gltf_reader.h"
 
-#include "core/utils/base64.h"
+#include "core/utils/Base64.h"
 
-#include <draco/point_cloud/point_cloud.h>
 #include <Eigen/Core>
 #include <nlohmann/json.hpp>
 #include <spdlog/spdlog.h>
 
-#ifdef __llvm__
-  #include <fmt/format.h>
-#else
-  #include <format>
-#endif
+#include <format>
 #include <fstream>
 #include <iostream>
 
@@ -71,11 +66,7 @@ GlTF::GlTF(const std::filesystem::path& file_path)
 {
     std::ifstream gltf_stream{file_path_};
     if (!gltf_stream.is_open()) {
-#ifdef __llvm__
-        throw std::runtime_error{fmt::format("Could not open {}", file_path_.string())};
-#else
         throw std::runtime_error{std::format("Could not open {}", file_path_.string())};
-#endif
     }
 
     nlohmann::json gltf_json;
@@ -84,11 +75,7 @@ GlTF::GlTF(const std::filesystem::path& file_path)
     }
     catch (std::exception& err) {
         SPDLOG_ERROR("JSON parse error: {}", err.what());
-#ifdef __llvm__
-        throw std::runtime_error{fmt::format("Could not parse {} as JSON", file_path_.string())};
-#else
         throw std::runtime_error{std::format("Could not parse {} as JSON", file_path_.string())};
-#endif
     }
 
     try {
@@ -122,7 +109,8 @@ void GlTF::read_buffers(const nlohmann::json& buffers_json)
             buffers_.emplace_back(read_buffer_from_inline_data(uri, byte_length));
         }
         else {  // external file
-            buffers_.emplace_back(read_buffer_from_file(uri, byte_length));
+            // TODO(AL-31): buffers_.emplace_back(read_buffer_from_file(uri, byte_length));
+            throw std::runtime_error{"No implemented yet!"};
         }
     }
 }
@@ -144,6 +132,8 @@ Buffer GlTF::read_buffer_from_inline_data(std::string_view data, uint32_t byte_l
     return buf;
 }
 
+/*
+TODO(AL-31): need to add bazel rules for draco
 Buffer GlTF::read_buffer_from_file(std::string_view uri, uint32_t byte_length)
 {
     Buffer buff;
@@ -164,6 +154,7 @@ Buffer GlTF::read_buffer_from_file(std::string_view uri, uint32_t byte_length)
 
     return buff;
 }
+*/
 
 void GlTF::read_buffer_views(const nlohmann::json& buffer_views_json)
 {

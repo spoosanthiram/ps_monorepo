@@ -36,11 +36,10 @@ ps_cc_library(
         "//graphics/opengl:__subpackages__",
     ],
     deps = [
-        "//core/utils:base64",
+        "//core/utils:Base64",
         "@eigen",
-        "@nlohmann-json",
+        "@nlohmann_json//:json",
         "@spdlog",
-        "@draco",
     ],
 )
 
