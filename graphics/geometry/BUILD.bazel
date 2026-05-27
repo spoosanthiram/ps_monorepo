@@ -38,7 +38,7 @@ ps_cc_library(
     deps = [
         "//core/utils:Base64",
         "@eigen",
-        "@nlohmann_json//:json",
+        "@simdjson",
         "@spdlog",
     ],
 )

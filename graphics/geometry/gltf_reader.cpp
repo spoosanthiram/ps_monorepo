@@ -3,7 +3,6 @@
 #include "core/utils/Base64.h"
 
 #include <Eigen/Core>
-#include <nlohmann/json.hpp>
 #include <spdlog/spdlog.h>
 
 #include <format>
@@ -14,7 +13,7 @@ namespace {
 
 constexpr const char* accessor_type_strings[] = {"SCALAR", "VEC2", "VEC3", "VEC4", "MAT2", "MAT3", "MAT4"};
 
-}  // namespace
+} // namespace
 
 namespace Ps::Graphics {
 
@@ -64,35 +63,25 @@ std::string_view Accessor::to_string(Type type)
 GlTF::GlTF(const std::filesystem::path& file_path)
     : file_path_{file_path}
 {
-    std::ifstream gltf_stream{file_path_};
-    if (!gltf_stream.is_open()) {
-        throw std::runtime_error{std::format("Could not open {}", file_path_.string())};
-    }
-
-    nlohmann::json gltf_json;
     try {
-        gltf_json = gltf_json.parse(gltf_stream);
-    }
-    catch (std::exception& err) {
-        SPDLOG_ERROR("JSON parse error: {}", err.what());
-        throw std::runtime_error{std::format("Could not parse {} as JSON", file_path_.string())};
-    }
+        simdjson::ondemand::parser parser;
+        auto json = simdjson::padded_string::load(file_path.string());
+        simdjson::ondemand::document doc = parser.iterate(json);
 
-    try {
-        const auto scene = gltf_json.at("scene").get<int>();
+        const int32_t scene = doc["scene"].get_int32();
         SPDLOG_INFO("Scene: {}", scene);
 
-        const auto& buffers_json = gltf_json.at("buffers");
-        read_buffers(buffers_json);
+        simdjson::ondemand::array buffers = doc["buffers"];
+        read_buffers(buffers);
 
-        const auto& buffer_views_json = gltf_json.at("bufferViews");
-        read_buffer_views(buffer_views_json);
+        simdjson::ondemand::array buffer_views = doc["bufferViews"];
+        read_buffer_views(buffer_views);
 
-        const auto& accessors_json = gltf_json.at("accessors");
-        read_accessors(accessors_json);
+        simdjson::ondemand::array accessors = doc["accessors"];
+        read_accessors(accessors);
 
-        const auto& meshes_json = gltf_json.at("meshes");
-        read_meshes(meshes_json);
+        simdjson::ondemand::array meshes = doc["meshes"];
+        read_meshes(meshes);
     }
     catch (std::exception& err) {
         SPDLOG_ERROR("Exception: {}", err.what());
@@ -100,15 +89,16 @@ GlTF::GlTF(const std::filesystem::path& file_path)
     }
 }
 
-void GlTF::read_buffers(const nlohmann::json& buffers_json)
+void GlTF::read_buffers(simdjson::ondemand::array buffers)
 {
-    for (const auto& buf_json : buffers_json) {
-        const auto uri = buf_json.at("uri").get<std::string_view>();
-        const auto byte_length = buf_json.at("byteLength").get<uint32_t>();
-        if (uri.starts_with("data:")) {  // inline data
+    for (auto buff : buffers) {
+        const std::string_view uri = buff["uri"];
+        const uint32_t byte_length = buff["byteLength"].get_uint32();
+        SPDLOG_INFO("byte_length: {}", byte_length);
+        if (uri.starts_with("data:")) { // inline data
             buffers_.emplace_back(read_buffer_from_inline_data(uri, byte_length));
         }
-        else {  // external file
+        else { // external file
             // TODO(AL-31): buffers_.emplace_back(read_buffer_from_file(uri, byte_length));
             throw std::runtime_error{"No implemented yet!"};
         }
@@ -122,7 +112,7 @@ Buffer GlTF::read_buffer_from_inline_data(std::string_view data, uint32_t byte_l
     }
 
     const auto pos = data.find(",");
-    auto base64_str = data.substr(pos + 1);  // it's ok if it throws
+    auto base64_str = data.substr(pos + 1); // it's ok if it throws
 
     auto buf = Core::base64_decode(base64_str);
     if (buf.size() != byte_length) {
@@ -156,12 +146,12 @@ Buffer GlTF::read_buffer_from_file(std::string_view uri, uint32_t byte_length)
 }
 */
 
-void GlTF::read_buffer_views(const nlohmann::json& buffer_views_json)
+void GlTF::read_buffer_views(simdjson::ondemand::array buffer_views)
 {
-    for (const auto& buf_view_json : buffer_views_json) {
-        const auto buf_index = buf_view_json.at("buffer").get<uint32_t>();
-        const auto byte_offset = buf_view_json.at("byteOffset").get<uint32_t>();
-        const auto byte_length = buf_view_json.at("byteLength").get<uint32_t>();
+    for (auto buf_view_obj : buffer_views) {
+        const uint32_t buf_index = buf_view_obj["buffer"].get_uint32();
+        const uint32_t byte_offset = buf_view_obj["byteOffset"].get_uint32();
+        const uint32_t byte_length = buf_view_obj["byteLength"].get_uint32();
 
         auto& buf = buffers_.at(buf_index);
         if (byte_offset + byte_length > buf.size()) {
@@ -169,7 +159,7 @@ void GlTF::read_buffer_views(const nlohmann::json& buffer_views_json)
         }
         const auto buff_view = std::span<unsigned char>{&buf[byte_offset], byte_length};
 
-        const auto target_val = buf_view_json.at("target").get<uint32_t>();
+        const uint32_t target_val = buf_view_obj["target"].get_uint32();
         const auto target = static_cast<BufferView::Target>(target_val);
         SPDLOG_INFO("Target: {}", BufferView::to_string(target));
 
@@ -177,21 +167,21 @@ void GlTF::read_buffer_views(const nlohmann::json& buffer_views_json)
     }
 }
 
-void GlTF::read_accessors(const nlohmann::json& accessors_json)
+void GlTF::read_accessors(simdjson::ondemand::array accessors)
 {
-    for (const auto& accessor_json : accessors_json) {
-        const auto buf_view_index = accessor_json.at("bufferView").get<uint32_t>();
+    for (auto accessor_obj : accessors) {
+        const uint32_t buf_view_index = accessor_obj["bufferView"].get_uint32();
         const auto& buffer_view = buffer_views_.at(buf_view_index);
 
-        const auto byte_offset = accessor_json.at("byteOffset").get<uint32_t>();
+        const uint32_t byte_offset = accessor_obj["byteOffset"].get_uint32();
 
-        const auto type_str = accessor_json.at("type").get<std::string_view>();
+        const std::string_view type_str = accessor_obj["type"];
         const auto type = Accessor::to_type(type_str);
 
-        const auto ct_val = accessor_json.at("componentType").get<int32_t>();
+        const int32_t ct_val = accessor_obj["componentType"].get_int32();
         const auto ct = static_cast<Accessor::ComponentType>(ct_val);
 
-        const auto count = accessor_json.at("count").get<uint32_t>();
+        const uint32_t count = accessor_obj["count"].get_uint32();
 
         accessors_.emplace_back(buffer_view, byte_offset, type, ct, count);
     }
@@ -217,17 +207,17 @@ void GlTF::read_accessors(const nlohmann::json& accessors_json)
     }
 }
 
-void GlTF::read_meshes(const nlohmann::json& meshes_json)
+void GlTF::read_meshes(simdjson::ondemand::array meshes)
 {
-    for (const auto& mesh_json : meshes_json) {
-        const auto& primitives_json = mesh_json.at("primitives");
-        for (const auto& primitive_json : primitives_json) {
-            const auto& attributes_json = primitive_json.at("attributes");
-            const auto pos_index = attributes_json.at("POSITION").get<uint32_t>();
+    for (auto mesh : meshes) {
+        simdjson::ondemand::array primitives = mesh["primitives"];
+        for (auto primitive : primitives) {
+            auto attributes = primitive["attributes"];
+            const uint32_t pos_index = attributes["POSITION"].get_uint32();
             SPDLOG_INFO("POSITION: {}", pos_index);
             const auto& pos_accessor = accessors_.at(pos_index);
 
-            const auto indices_index = primitive_json.at("indices").get<uint32_t>();
+            const uint32_t indices_index = primitive["indices"].get_uint32();
             SPDLOG_INFO("indices: {}", indices_index);
             const auto& indices_accessor = accessors_.at(indices_index);
 
@@ -236,4 +226,4 @@ void GlTF::read_meshes(const nlohmann::json& meshes_json)
     }
 }
 
-}  // namespace Ps::Graphics
+} // namespace Ps::Graphics
