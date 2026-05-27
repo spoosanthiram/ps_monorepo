@@ -1,6 +1,6 @@
 #pragma once
 
-#include <nlohmann/json_fwd.hpp>
+#include <simdjson.h>
 
 #include <filesystem>
 #include <span>
@@ -89,18 +89,16 @@ public:
     const std::vector<Mesh>& get_meshes() const { return meshes_; }
 
 private:
-    void read_buffers(const nlohmann::json& buffers_json);
+    void read_buffers(simdjson::ondemand::array buffers);
     Buffer read_buffer_from_inline_data(std::string_view data, uint32_t byte_length);
     /*
     TODO(AL-31): need to add bazel rules for draco
     Buffer read_buffer_from_file(std::string_view uri, uint32_t byte_length);
     */
 
-    void read_buffer_views(const nlohmann::json& buffer_views_json);
-
-    void read_accessors(const nlohmann::json& accessors_json);
-
-    void read_meshes(const nlohmann::json& meshes_json);
+    void read_buffer_views(simdjson::ondemand::array buffer_views);
+    void read_accessors(simdjson::ondemand::array accessors);
+    void read_meshes(simdjson::ondemand::array meshes);
 
 private:
     std::filesystem::path file_path_;
