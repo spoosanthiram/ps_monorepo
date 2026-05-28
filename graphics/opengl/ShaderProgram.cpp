@@ -1,7 +1,6 @@
 #include "ShaderProgram.h"
 
-#include <fmt/format.h>
-
+#include <format>
 #include <iostream>
 
 namespace Ps::Graphics {
@@ -31,7 +30,7 @@ void ShaderProgram::attach_shader(Shader&& shader)
 
     gl_api->glAttachShader(program_id_, shader.get_shader_id());
     if (gl_api->glGetError() != GL_NO_ERROR) {
-        throw std::runtime_error{fmt::format("Failed to attach {} shader.", shader.get_type_str())};
+        throw std::runtime_error{std::format("Failed to attach {} shader.", shader.get_type_str())};
     }
 
     shaders_.emplace_back(std::move(shader));

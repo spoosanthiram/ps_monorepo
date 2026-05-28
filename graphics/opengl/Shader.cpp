@@ -1,8 +1,8 @@
 #include "Shader.h"
 
-#include <fmt/format.h>
-
+#include <format>
 #include <fstream>
+#include <stdexcept>
 
 namespace Ps::Graphics {
 
@@ -11,7 +11,7 @@ Shader::Shader(GLenum shader_type)
 {
     shader_id_ = OpenGLInterface::get_api()->glCreateShader(shader_type_);
     if (shader_id_ == 0) {
-        throw std::runtime_error{fmt::format("Could not create {}", get_type_str())};
+        throw std::runtime_error{std::format("Could not create {}", get_type_str())};
     }
 }
 
@@ -40,7 +40,7 @@ void Shader::compile(const std::filesystem::path& file_path)
 
     std::ifstream input_stream{file_path.c_str()};
     if (!input_stream) {
-        throw std::runtime_error{fmt::format("Could not open '{}' shader file", file_path.string())};
+        throw std::runtime_error{std::format("Could not open '{}' shader file", file_path.string())};
     }
     std::string file_content{std::istreambuf_iterator<char>{input_stream}, std::istreambuf_iterator<char>{}};
 
@@ -56,7 +56,7 @@ void Shader::compile(const std::filesystem::path& file_path)
         GLsizei log_lenth;
         char log[kLog_Length];
         gl_api->glGetShaderInfoLog(shader_id_, kLog_Length, &log_lenth, static_cast<char*>(log));
-        throw std::runtime_error{fmt::format("{} compilation failed. Error: {}", get_type_str(), log)};
+        throw std::runtime_error{std::format("{} compilation failed. Error: {}", get_type_str(), log)};
     }
 }
 

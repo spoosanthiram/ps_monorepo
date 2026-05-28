@@ -10,7 +10,6 @@ ps_cc_library(
         "//graphics/shaders",
     ],
     deps = [
-        # "//graphics/avmap:PriorMap",
         "//graphics/geometry:ViewpointCamera",
         "//graphics/opengl:OpenGLObject",
         "@rules_qt//:qt_opengl_widgets",

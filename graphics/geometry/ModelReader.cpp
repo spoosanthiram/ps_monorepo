@@ -2,6 +2,7 @@
 
 #include <spdlog/spdlog.h>
 
+#include <format>
 #include <fstream>
 #include <regex>
 
@@ -13,7 +14,7 @@ GraphicsGeometry read_bin(const fs::path& file_path)
 {
     std::ifstream bin_stream{file_path, std::ios::binary};
     if (!bin_stream) {
-        throw std::runtime_error{fmt::format("Could not open {}", file_path.string())};
+        throw std::runtime_error{std::format("Could not open {}", file_path.string())};
     }
 
     // number of vertices
@@ -66,7 +67,7 @@ GraphicsGeometry read_obj(const fs::path& file_path)
 {
     std::ifstream obj_stream{file_path};
     if (!obj_stream) {
-        throw std::runtime_error{fmt::format("Could not open {}", file_path.string())};
+        throw std::runtime_error{std::format("Could not open {}", file_path.string())};
     }
 
     GraphicsGeometry graphics_geometry;
@@ -133,7 +134,7 @@ GraphicsGeometry read_model(const fs::path& file_path)
     else if (file_path.extension() == ".obj") {
         return read_obj(file_path);
     }
-    SPDLOG_ERROR(fmt::format("Model file {} is not supported yet!", file_path.string()));
+    SPDLOG_ERROR(std::format("Model file {} is not supported yet!", file_path.string()));
     return GraphicsGeometry{};
 }
 
