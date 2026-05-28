@@ -7,7 +7,7 @@
 #include <string_view>
 #include <vector>
 
-namespace Ps::Graphics {
+namespace ps::viz {
 
 using Buffer = std::vector<unsigned char>;
 
@@ -108,4 +108,4 @@ private:
     std::vector<Mesh> meshes_;
 };
 
-} // namespace Ps::Graphics
+} // namespace ps::viz

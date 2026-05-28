@@ -1,12 +1,12 @@
 #pragma once
 
-#include "GraphicsGeometry.h"
+#include "graphics_geometry.h"
 
 #include "core/utils/ClassHelper.h"
 
 #include <Eigen/Geometry>
 
-namespace Ps::Graphics {
+namespace ps::viz {
 
 /// @brief ViewpointCamera abstracts eye location with rotation
 class ViewpointCamera
@@ -45,4 +45,4 @@ private:
     Eigen::Matrix4d view_matrix_;
 };
 
-} // namespace Ps::Graphics
+} // namespace ps::viz

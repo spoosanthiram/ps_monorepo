@@ -7,10 +7,10 @@
 #include <format>
 #include <iostream>
 
-Ps::Viz::Color3f ray_color(const Ps::Viz::Ray& ray)
+ps::viz::Color3f ray_color(const ps::viz::Ray& ray)
 {
     const auto alpha = 0.5 * (ray.direction().normalized().y() + 1.0);
-    return (1.0 - alpha) * Ps::Viz::Color3f{1.0f, 1.0f, 1.0f} + alpha * Ps::Viz::Color3f{0.5f, 0.7f, 1.0f};
+    return (1.0 - alpha) * ps::viz::Color3f{1.0f, 1.0f, 1.0f} + alpha * ps::viz::Color3f{0.5f, 0.7f, 1.0f};
 }
 
 int main()
@@ -31,11 +31,11 @@ int main()
 
     // Camera
     constexpr auto focal_length = 1.0;
-    const auto camera_center = Ps::Viz::Point3d{0.0, 0.0, 0.0};
+    const auto camera_center = ps::viz::Point3d{0.0, 0.0, 0.0};
 
     // Horizontal & vertical viewport edges
-    const auto viewport_u = Ps::Viz::Vector3d{viewport_width, 0.0, 0.0};
-    const auto viewport_v = Ps::Viz::Vector3d{0.0, -viewport_height, 0.0};
+    const auto viewport_u = ps::viz::Vector3d{viewport_width, 0.0, 0.0};
+    const auto viewport_v = ps::viz::Vector3d{0.0, -viewport_height, 0.0};
 
     // Calculate the horizontal & vertical delta vectors from pixel to pixel
     const auto pixel_delta_u = viewport_u / image_width;
@@ -43,7 +43,7 @@ int main()
 
     // Calculate the location of the upper left pixel
     const auto viewport_upper_left =
-        camera_center - Ps::Viz::Vector3d{0.0, 0.0, focal_length} - (viewport_u / 2) - (viewport_v / 2);
+        camera_center - ps::viz::Vector3d{0.0, 0.0, focal_length} - (viewport_u / 2) - (viewport_v / 2);
     const auto pixel00_loc = viewport_upper_left + 0.5 * (pixel_delta_u + pixel_delta_v);
     SPDLOG_INFO("pixel00_loc: ({}, {}, {})", pixel00_loc.x(), pixel00_loc.y(), pixel00_loc.z());
 
@@ -56,7 +56,7 @@ int main()
         for (int i = 0; i < image_width; ++i) {
             const auto pixel_center = pixel00_loc + (i * pixel_delta_u) + (j * pixel_delta_v);
             const auto ray_direction = pixel_center - camera_center;
-            Ps::Viz::Ray ray{camera_center, ray_direction};
+            ps::viz::Ray ray{camera_center, ray_direction};
             const auto pixel_color = ray_color(ray);
             std::cout << std::format("{} {} {}",
                                      static_cast<int>(pixel_color.x() * 255.0),

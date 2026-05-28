@@ -1,14 +1,14 @@
 load("@rules_cc//cc:defs.bzl", "cc_test")
 
 cc_test(
-    name = "ModelReaderTest",
+    name = "model_reader_test",
     size = "small",
-    srcs = ["ModelReaderTest.cpp"],
+    srcs = ["model_reader_test.cpp"],
     data = [
-        "//graphics/data:models",
+        "//viz/data:models",
     ],
     deps = [
-        "//graphics/geometry:ModelReader",
+        "//viz/geometry:model_reader",
         "@catch2//:catch2_main",
     ],
 )
@@ -18,10 +18,10 @@ cc_test(
     size = "small",
     srcs = ["gltf_reader_test.cpp"],
     data = [
-        "//graphics/data:models",
+        "//viz/data:models",
     ],
     deps = [
-        "//graphics/geometry:gltf_reader",
+        "//viz/geometry:gltf_reader",
         "@catch2//:catch2_main",
     ],
 )

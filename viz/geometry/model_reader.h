@@ -1,11 +1,11 @@
 #pragma once
 
-#include "GraphicsGeometry.h"
+#include "graphics_geometry.h"
 
 #include <filesystem>
 
-namespace Ps::Graphics {
+namespace ps::viz {
 
 GraphicsGeometry read_model(const std::filesystem::path& file_path);
 
-} // namespace Ps::Graphics
+} // namespace ps::viz

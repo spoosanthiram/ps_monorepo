@@ -2,7 +2,7 @@
 
 #include <Eigen/Core>
 
-namespace Ps::Viz {
+namespace ps::viz {
 
 // Use Eigen Vector/Matrix for most of the basic points, vectors and colors
 
@@ -24,4 +24,4 @@ using Vector3d = Eigen::Vector3d;
 using Color3f = Eigen::Vector3f;
 using Color4f = Eigen::Vector4f;
 
-} // namespace Ps::Viz
+} // namespace ps::viz

@@ -8,3 +8,59 @@ ps_cc_library(
     ],
     deps = ["@eigen"],
 )
+
+ps_cc_library(
+    name = "graphics_geometry",
+    hdrs = ["graphics_geometry.h"],
+    visibility = [
+        "//viz/opengl:__subpackages__",
+    ],
+    deps = [
+        ":viz_defs",
+        "//core/utils:ClassHelper",
+        "@eigen",
+    ],
+)
+
+ps_cc_library(
+    name = "model_reader",
+    srcs = ["model_reader.cpp"],
+    hdrs = ["model_reader.h"],
+    visibility = [
+        ":__subpackages__",
+        "//viz/opengl:__subpackages__",
+    ],
+    deps = [
+        ":graphics_geometry",
+        "@spdlog",
+    ],
+)
+
+ps_cc_library(
+    name = "gltf_reader",
+    srcs = ["gltf_reader.cpp"],
+    hdrs = ["gltf_reader.h"],
+    visibility = [
+        ":__subpackages__",
+        "//viz/opengl:__subpackages__",
+    ],
+    deps = [
+        "//core/utils:Base64",
+        "@eigen",
+        "@simdjson",
+        "@spdlog",
+    ],
+)
+
+ps_cc_library(
+    name = "viewpoint_camera",
+    srcs = ["viewpoint_camera.cpp"],
+    hdrs = ["viewpoint_camera.h"],
+    visibility = [
+        "//viz/ui:__subpackages__",
+    ],
+    deps = [
+        ":graphics_geometry",
+        "//core/utils:ClassHelper",
+    ],
+)
