@@ -2,7 +2,7 @@
 
 #include "viz/geometry/viz_defs.h"
 
-namespace Ps::Viz {
+namespace ps::viz {
 
 class Ray
 {
@@ -22,4 +22,4 @@ private:
     Vector3d direction_;
 };
 
-} // namespace Ps::Viz
+} // namespace ps::viz

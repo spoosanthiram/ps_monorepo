@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Check for formatting changes and abort the commit
-if ! git clang-format --staged --diff -q; then
+if ! git clang-format --extensions h,cpp --staged --diff -q; then
     echo "\nYour staged files are not formatted correctly. Please run 'git clang-format' to update and try commit again\n"
 	exit 1
 fi

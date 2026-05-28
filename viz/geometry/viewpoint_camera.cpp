@@ -1,6 +1,6 @@
-#include "ViewpointCamera.h"
+#include "viewpoint_camera.h"
 
-namespace Ps::Graphics {
+namespace ps::viz {
 
 ViewpointCamera::ViewpointCamera()
 {
@@ -94,4 +94,4 @@ void ViewpointCamera::update_view_matrix()
     view_matrix_(3, 3) = 1.0;
 }
 
-}  // namespace Ps::Graphics
+} // namespace ps::viz

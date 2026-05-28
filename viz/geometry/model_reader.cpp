@@ -1,4 +1,4 @@
-#include "ModelReader.h"
+#include "model_reader.h"
 
 #include <spdlog/spdlog.h>
 
@@ -8,7 +8,7 @@
 
 namespace fs = std::filesystem;
 
-namespace Ps::Graphics {
+namespace ps::viz {
 
 GraphicsGeometry read_bin(const fs::path& file_path)
 {
@@ -138,4 +138,4 @@ GraphicsGeometry read_model(const fs::path& file_path)
     return GraphicsGeometry{};
 }
 
-} // namespace Ps::Graphics
+} // namespace ps::viz

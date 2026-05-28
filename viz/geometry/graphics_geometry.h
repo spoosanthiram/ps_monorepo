@@ -1,24 +1,13 @@
 #pragma once
 
 #include "core/utils/ClassHelper.h"
+#include "viz/geometry/viz_defs.h"
 
 #include <Eigen/Core>
 
 #include <vector>
 
-namespace Ps::Graphics {
-
-using Point2i = Eigen::Matrix<int32_t, 2, 1>;
-using Point2f = Eigen::Vector2f;
-using Point2d = Eigen::Vector2d;
-
-using Point3f = Eigen::Vector3f;
-using Point3d = Eigen::Vector3d;
-
-using Vector3f = Eigen::Vector3f;
-using Vector3d = Eigen::Vector3d;
-
-using Point4f = Eigen::Vector4f;
+namespace ps::viz {
 
 /// @brief Struct to keep the relevant geometry info that can be
 ///        directly used in a graphics pipeline
@@ -60,4 +49,4 @@ struct GraphicsGeometry
     std::vector<uint32_t> indices;
 };
 
-} // namespace Ps::Graphics
+} // namespace ps::viz

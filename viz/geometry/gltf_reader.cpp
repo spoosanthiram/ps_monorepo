@@ -15,7 +15,7 @@ constexpr const char* accessor_type_strings[] = {"SCALAR", "VEC2", "VEC3", "VEC4
 
 } // namespace
 
-namespace Ps::Graphics {
+namespace ps::viz {
 
 std::string_view BufferView::to_string(BufferView::Target target)
 {
@@ -114,7 +114,7 @@ Buffer GlTF::read_buffer_from_inline_data(std::string_view data, uint32_t byte_l
     const auto pos = data.find(",");
     auto base64_str = data.substr(pos + 1); // it's ok if it throws
 
-    auto buf = Core::base64_decode(base64_str);
+    auto buf = Ps::Core::base64_decode(base64_str);
     if (buf.size() != byte_length) {
         throw std::runtime_error{"Base64 data size don't match byte length."};
     }
@@ -226,4 +226,4 @@ void GlTF::read_meshes(simdjson::ondemand::array meshes)
     }
 }
 
-} // namespace Ps::Graphics
+} // namespace ps::viz
