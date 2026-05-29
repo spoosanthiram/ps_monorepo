@@ -1,8 +1,8 @@
-#include "OpenGLWidget.h"
+#include "opengl_widget.h"
 
-#include "graphics/geometry/gltf_reader.h"
-#include "graphics/opengl/OpenGLObject.h"
-#include "graphics/opengl/ShaderProgram.h"
+#include "viz/geometry/gltf_reader.h"
+#include "viz/opengl/opengl_object.h"
+#include "viz/opengl/shader_program.h"
 
 #include <QtGui/QMouseEvent>
 #include <QtOpenGL/QOpenGLVersionFunctionsFactory>
@@ -11,7 +11,7 @@
 #include <iostream>
 #include <numbers>
 
-namespace Ps::Graphics {
+namespace ps::viz {
 
 OpenGLWidget::OpenGLWidget(QWidget* parent)
     : QOpenGLWidget{parent}
@@ -175,4 +175,4 @@ Point2d OpenGLWidget::normalize(const Point2i& position)
                    (height_ - 2.0 * position.y()) / static_cast<double>(height_)};
 }
 
-}  // namespace Ps::Graphics
+} // namespace ps::viz

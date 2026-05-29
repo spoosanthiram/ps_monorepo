@@ -1,4 +1,4 @@
-#include "MainWindow.h"
+#include "main_window.h"
 
 #include <QtWidgets/QApplication>
 
@@ -10,7 +10,7 @@ int main(int argc, char** argv)
     try {
         QApplication app{argc, argv};
 
-        Ps::Graphics::MainWindow main_window;
+        ps::viz::MainWindow main_window;
         main_window.show();
 
         while (!main_window.is_closed()) {

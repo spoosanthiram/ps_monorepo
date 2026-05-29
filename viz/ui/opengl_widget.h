@@ -1,8 +1,8 @@
 #pragma once
 
 #include "core/utils/ClassHelper.h"
-#include "graphics/geometry/GraphicsGeometry.h"
-#include "graphics/geometry/ViewpointCamera.h"
+#include "viz/geometry/graphics_geometry.h"
+#include "viz/geometry/viewpoint_camera.h"
 
 #include <Eigen/Core>
 #include <QtOpenGLWidgets/QOpenGLWidget>
@@ -10,7 +10,7 @@
 #include <memory>
 #include <vector>
 
-namespace Ps::Graphics {
+namespace ps::viz {
 
 class OpenGLObject;
 class ShaderProgram;
@@ -56,4 +56,4 @@ private:
     Point2i previous_mouse_position_{0, 0};
 };
 
-} // namespace Ps::Graphics
+} // namespace ps::viz
