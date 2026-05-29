@@ -1,11 +1,11 @@
 #pragma once
 
-#include "OpenGLWidget.h"
+#include "opengl_widget.h"
 
 #include <QtCore/QPointer>
 #include <QtWidgets/QMainWindow>
 
-namespace Ps::Graphics {
+namespace ps::viz {
 
 class MainWindow : public QMainWindow
 {
@@ -24,4 +24,4 @@ private:
     bool window_closed_{false};
 };
 
-} // namespace Ps::Graphics
+} // namespace ps::viz

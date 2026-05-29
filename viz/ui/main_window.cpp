@@ -1,6 +1,6 @@
-#include "MainWindow.h"
+#include "main_window.h"
 
-namespace Ps::Graphics {
+namespace ps::viz {
 
 constexpr int kInitial_Width = 1300;
 constexpr int kInitial_Height = 900;
@@ -24,4 +24,4 @@ void MainWindow::closeEvent(QCloseEvent* /*close_event*/)
     window_closed_ = true;
 }
 
-}  // namespace Ps::Graphics
+} // namespace ps::viz

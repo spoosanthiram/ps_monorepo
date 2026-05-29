@@ -5,6 +5,6 @@ filegroup(
         "*.frag",
     ]),
     visibility = [
-        "//graphics/ui:__subpackages__",
+        "//viz/ui:__subpackages__",
     ],
 )

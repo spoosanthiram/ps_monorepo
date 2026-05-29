@@ -1,0 +1,36 @@
+load("@rules_qt//:qt.bzl", "qt_cc_binary")
+load("//bazel:ps_cc_rules.bzl", "ps_cc_library")
+
+ps_cc_library(
+    name = "opengl_widget",
+    srcs = ["opengl_widget.cpp"],
+    hdrs = ["opengl_widget.h"],
+    data = [
+        "//viz/data:models",
+        "//viz/shaders",
+    ],
+    deps = [
+        "//viz/geometry:viewpoint_camera",
+        "//viz/opengl:opengl_object",
+        "@rules_qt//:qt_opengl_widgets",
+        "@spdlog",
+    ],
+)
+
+ps_cc_library(
+    name = "main_window",
+    srcs = ["main_window.cpp"],
+    hdrs = ["main_window.h"],
+    deps = [
+        ":opengl_widget",
+        "@rules_qt//:qt_widgets",
+    ],
+)
+
+qt_cc_binary(
+    name = "viewer",
+    srcs = ["main.cpp"],
+    deps = [
+        ":main_window",
+    ],
+)
