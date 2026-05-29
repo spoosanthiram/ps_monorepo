@@ -1,10 +1,10 @@
-#include "Shader.h"
+#include "shader.h"
 
 #include <format>
 #include <fstream>
 #include <stdexcept>
 
-namespace Ps::Graphics {
+namespace ps::viz {
 
 Shader::Shader(GLenum shader_type)
     : shader_type_{shader_type}
@@ -60,4 +60,4 @@ void Shader::compile(const std::filesystem::path& file_path)
     }
 }
 
-}  // namespace Ps::Graphics
+} // namespace ps::viz

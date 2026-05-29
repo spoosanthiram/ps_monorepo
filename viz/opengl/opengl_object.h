@@ -1,15 +1,15 @@
 #pragma once
 
-#include "OpenGLInterface.h"
-#include "ShaderProgram.h"
+#include "opengl_interface.h"
+#include "shader_program.h"
 
 #include "core/utils/ClassHelper.h"
-#include "graphics/geometry/GraphicsGeometry.h"
+#include "viz/geometry/graphics_geometry.h"
 
 #include <filesystem>
 #include <memory>
 
-namespace Ps::Graphics {
+namespace ps::viz {
 
 class GlTF;
 
@@ -49,4 +49,4 @@ private:
     uint32_t indices_size_{0};
 };
 
-} // namespace Ps::Graphics
+} // namespace ps::viz

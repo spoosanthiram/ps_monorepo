@@ -1,0 +1,47 @@
+load("//bazel:ps_cc_rules.bzl", "ps_cc_library")
+
+ps_cc_library(
+    name = "opengl_interface",
+    srcs = ["opengl_interface.cpp"],
+    hdrs = ["opengl_interface.h"],
+    deps = [
+        "@rules_qt//:qt_opengl",
+    ],
+)
+
+ps_cc_library(
+    name = "shader_program",
+    srcs = [
+        "shader.cpp",
+        "shader_program.cpp",
+    ],
+    hdrs = [
+        "shader.h",
+        "shader_program.h",
+    ],
+    deps = [
+        ":opengl_interface",
+        "//core/utils:ClassHelper",
+        "//viz/geometry:graphics_geometry",
+    ],
+)
+
+ps_cc_library(
+    name = "opengl_object",
+    srcs = ["opengl_object.cpp"],
+    hdrs = ["opengl_object.h"],
+    data = [
+        "//viz/data:textures",
+    ],
+    visibility = [
+        "//viz/ui:__subpackages__",
+    ],
+    deps = [
+        ":opengl_interface",
+        ":shader_program",
+        "//core/utils:ClassHelper",
+        "//viz/geometry:graphics_geometry",
+        "//viz/geometry:model_reader",
+        "//viz/geometry:gltf_reader",
+    ],
+)

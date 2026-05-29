@@ -1,9 +1,9 @@
-#include "ShaderProgram.h"
+#include "shader_program.h"
 
 #include <format>
 #include <iostream>
 
-namespace Ps::Graphics {
+namespace ps::viz {
 
 ShaderProgram::ShaderProgram()
 {
@@ -98,4 +98,4 @@ GLint ShaderProgram::lookup_location(const std::string& name)
     return location;
 }
 
-}  // namespace Ps::Graphics
+} // namespace ps::viz
