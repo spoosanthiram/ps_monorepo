@@ -1,6 +1,6 @@
-#include "OpenGLInterface.h"
+#include "opengl_interface.h"
 
-namespace Ps::Graphics {
+namespace ps::viz {
 
 OpenGLInterface::OpenGLFunctions* OpenGLInterface::gl_funcs_ = nullptr;
 
@@ -14,4 +14,4 @@ void OpenGLInterface::set_api(OpenGLFunctions* funcs)
     gl_funcs_ = funcs;
 }
 
-}  // namespace Ps::Graphics
+} // namespace ps::viz

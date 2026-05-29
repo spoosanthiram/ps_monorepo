@@ -1,12 +1,12 @@
 #pragma once
 
-#include "OpenGLInterface.h"
+#include "opengl_interface.h"
 
 #include "core/utils/ClassHelper.h"
 
 #include <filesystem>
 
-namespace Ps::Graphics {
+namespace ps::viz {
 
 /// @brief Class for OpenGL shader currenty supporting VERTEX and FRAGMENT
 /// shader
@@ -52,4 +52,4 @@ private:
     GLuint shader_id_{0};
 };
 
-} // namespace Ps::Graphics
+} // namespace ps::viz

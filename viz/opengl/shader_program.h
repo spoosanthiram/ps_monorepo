@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Shader.h"
+#include "shader.h"
 
 #include "core/utils/ClassHelper.h"
-#include "graphics/geometry/GraphicsGeometry.h"
+#include "viz/geometry/graphics_geometry.h"
 
-namespace Ps::Graphics {
+namespace ps::viz {
 
 /// @brief Class for OpenGL shader program
 class ShaderProgram
@@ -44,4 +44,4 @@ private:
     std::unordered_map<std::string, GLint> location_map_;
 };
 
-} // namespace Ps::Graphics
+} // namespace ps::viz

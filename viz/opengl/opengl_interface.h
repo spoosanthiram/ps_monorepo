@@ -2,7 +2,7 @@
 
 #include <QtOpenGL/QOpenGLFunctions_4_5_Core>
 
-namespace Ps::Graphics {
+namespace ps::viz {
 
 constexpr int kOpenGL_Major_Version = 4;
 constexpr int kOpenGL_Minor_Version = 5;
@@ -22,4 +22,4 @@ private:
     static OpenGLFunctions* gl_funcs_;
 };
 
-} // namespace Ps::Graphics
+} // namespace ps::viz

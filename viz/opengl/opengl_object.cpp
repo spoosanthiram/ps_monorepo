@@ -1,13 +1,13 @@
-#include "OpenGLObject.h"
+#include "opengl_object.h"
 
-#include "graphics/geometry/gltf_reader.h"
-#include "graphics/geometry/ModelReader.h"
+#include "viz/geometry/gltf_reader.h"
+#include "viz/geometry/model_reader.h"
 
 #include <QtGui/QImage>
 
 #include <iostream>
 
-namespace Ps::Graphics {
+namespace ps::viz {
 
 constexpr uint32_t kShader_Vertex_Position = 0;
 constexpr uint32_t kShader_Vertex_Normal = 1;
@@ -55,7 +55,8 @@ OpenGLObject::OpenGLObject(GlTF& gltf)
     gl_funcs->glEnableVertexAttribArray(kShader_Vertex_Position);
 
     // vertex normal
-    {}
+    {
+    }
 
     // indices
     const auto* indices_accessor = mesh.indices;
@@ -92,7 +93,7 @@ OpenGLObject::~OpenGLObject()
 
 OpenGLObject::OpenGLObject(OpenGLObject&& other) noexcept
     : vao_{other.vao_}
-    , position_bo_{other.position_bo_}  // , normal_bo_{other.normal_bo_}
+    , position_bo_{other.position_bo_} // , normal_bo_{other.normal_bo_}
     , color_bo_{other.color_bo_}
     , index_bo_{other.index_bo_}
     , indices_size_{other.indices_size_}
@@ -230,4 +231,4 @@ void OpenGLObject::init(GraphicsGeometry&& graphics_geometry)
     indices_size_ = static_cast<uint32_t>(graphics_geometry.indices.size());
 }
 
-}  // namespace Ps::Graphics
+} // namespace ps::viz
