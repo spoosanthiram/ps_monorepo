@@ -5,6 +5,7 @@ bazel_dep(name = "eigen", version = "5.0.1")
 # bazel_dep(name = "grpc", version = "1.80.0")
 bazel_dep(name = "platforms", version = "1.1.0")
 # bazel_dep(name = "protobuf", version = "33.4")
+bazel_dep(name = "rules_python", version = "1.9.1")
 bazel_dep(name = "rules_cc", version = "0.2.18")
 bazel_dep(name = "rules_cuda", version = "0.3.0")
 bazel_dep(name = "rules_qt", version = "0.0.6")
@@ -12,6 +13,19 @@ bazel_dep(name = "simdjson", version = "4.6.0")
 bazel_dep(name = "spdlog", version = "1.17.0")
 bazel_dep(name = "sqlite3", version = "3.51.2")
 
+#Python
+python = use_extension("@rules_python//python/extensions:python.bzl", "python")
+python.toolchain(python_version = "3.13")
+
+pip = use_extension("@rules_python//python/extensions:pip.bzl", "pip")
+pip.parse(
+    hub_name = "pypi",
+    python_version = "3.13",
+    requirements_lock = "//:py_requirements.lock",
+)
+use_repo(pip, "pypi")
+
+# Qt
 qt = use_extension("@rules_qt//extension:qt.bzl", "fetch")
 qt.install(
     name = "qt_linux_x86_64",
@@ -29,4 +43,34 @@ use_repo(qt, "qt_linux_x86_64", "qt_mac_aarch64")
 
 register_toolchains(
     "@rules_qt//tools:all",
+)
+
+# HDF5
+new_local_repository = use_repo_rule("@bazel_tools//tools/build_defs/repo:local.bzl", "new_local_repository")
+new_local_repository(
+    name = "local_hdf5",
+    build_file_content = """
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+cc_library(
+    name = "hdf5",
+    srcs = [
+        "lib/libaec.a",
+        "lib/libhdf5.a",
+        "lib/libszaec.a",
+        "lib/libzlib-static.a",
+    ],
+    hdrs = glob(["include/*.h"]),
+    includes = ["include"],
+    visibility = ["//visibility:public"],
+)
+cc_library(
+    name = "hdf5_cpp",
+    srcs = ["lib/libhdf5_cpp.a"],
+    hdrs = glob(["include/*.h"]),
+    includes = ["include"],
+    visibility = ["//visibility:public"],
+    deps = [":hdf5"],
+)
+""",
+    path = "/Users/saravanan/Downloads/HDF_Group/HDF5/2.1.1",
 )

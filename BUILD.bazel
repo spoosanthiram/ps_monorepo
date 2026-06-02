@@ -1,0 +1,7 @@
+load("@rules_python//python:pip.bzl", "compile_pip_requirements")
+
+compile_pip_requirements(
+    name = "py_requirements",
+    src = "py_requirements.in",
+    requirements_txt = "//:py_requirements.lock",
+)
