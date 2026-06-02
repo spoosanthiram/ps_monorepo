@@ -4,7 +4,7 @@
 
 namespace Ps::Algo {
 
-constexpr auto kCapacity = 5;
+constexpr auto capacity = 5;
 
 void LRUCache::insert(KeyType key, ValueType value)
 {
@@ -13,7 +13,7 @@ void LRUCache::insert(KeyType key, ValueType value)
         move_front(key, it);
     }
     else {
-        if (key_val_map_.size() == kCapacity) {
+        if (key_val_map_.size() == capacity) {
             key_val_map_.erase(lru_.back());
             lru_.pop_back();
         }

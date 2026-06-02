@@ -16,14 +16,14 @@ namespace ps::viz {
 OpenGLWidget::OpenGLWidget(QWidget* parent)
     : QOpenGLWidget{parent}
 {
-    constexpr auto kNumber_Of_Sample = 4;
+    constexpr auto number_of_sample = 4;
 
     setFocusPolicy(Qt::StrongFocus);
 
     QSurfaceFormat format = QOpenGLWidget::format();
-    format.setVersion(kOpenGL_Major_Version, kOpenGL_Minor_Version);
+    format.setVersion(opengl_major_version, opengl_minor_version);
     format.setSwapBehavior(QSurfaceFormat::DoubleBuffer);
-    format.setSamples(kNumber_Of_Sample);
+    format.setSamples(number_of_sample);
     setFormat(format);
 }
 
@@ -102,20 +102,20 @@ void OpenGLWidget::resizeGL(int width, int height)
     width_ = width;
     height_ = height;
 
-    constexpr double FOVY = 45.0;
-    constexpr double NEAR = 1.0;
-    constexpr double FAR = 100.0;
+    constexpr double fovy = 45.0;
+    constexpr double near = 1.0;
+    constexpr double far = 100.0;
 
     double aspect_ratio = static_cast<double>(width_) / static_cast<double>(height_);
 
     projection_matrix_.setZero();
 
-    double q = 1.0 / std::tan(0.5 * FOVY * std::numbers::pi / 180.0);
+    double q = 1.0 / std::tan(0.5 * fovy * std::numbers::pi / 180.0);
     projection_matrix_(0, 0) = q / aspect_ratio;
     projection_matrix_(1, 1) = q;
-    projection_matrix_(2, 2) = (NEAR + FAR) / (NEAR - FAR);
+    projection_matrix_(2, 2) = (near + far) / (near - far);
     projection_matrix_(2, 3) = -1.0;
-    projection_matrix_(3, 2) = (2.0 * NEAR * FAR) / (NEAR - FAR);
+    projection_matrix_(3, 2) = (2.0 * near * far) / (near - far);
 
     OpenGLInterface::get_api()->glViewport(0, 0, width_, height_);
 }

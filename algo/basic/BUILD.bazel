@@ -23,13 +23,6 @@ ps_cc_library(
 )
 
 ps_cc_library(
-    name = "String",
-    srcs = ["String.cpp"],
-    hdrs = ["String.h"],
-    visibility = [":__subpackages__"],
-)
-
-ps_cc_library(
     name = "Sorting",
     srcs = ["Sorting.cpp"],
     hdrs = ["Sorting.h"],

@@ -11,7 +11,7 @@ std::string BreadthFirstGraphVertex::to_string() const
     std::format_to(std::back_inserter(str), "{}", id());
     for (const auto edge : edges_) {
         if (edge->v()->id() > id()) {
-            std::format_to(std::back_inserter(str), "{}{}", kSeparator, edge->v()->id());
+            std::format_to(std::back_inserter(str), "{}{}", separator, edge->v()->id());
         }
     }
     return str;

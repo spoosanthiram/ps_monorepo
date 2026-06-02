@@ -9,10 +9,10 @@
 
 namespace ps::viz {
 
-constexpr uint32_t kShader_Vertex_Position = 0;
-constexpr uint32_t kShader_Vertex_Normal = 1;
-constexpr uint32_t kShader_Vertex_Color = 1;
-constexpr uint32_t kShader_Texture = 2;
+constexpr uint32_t shader_vertex_position = 0;
+constexpr uint32_t shader_vertex_normal = 1;
+constexpr uint32_t shader_vertex_color = 1;
+constexpr uint32_t shader_texture = 2;
 
 OpenGLObject::OpenGLObject(const std::filesystem::path& file_path)
 {
@@ -51,8 +51,8 @@ OpenGLObject::OpenGLObject(GlTF& gltf)
                            &(position_buffer.buff_view[position_accessor->byte_offset]),
                            GL_STATIC_DRAW);
 
-    gl_funcs->glVertexAttribPointer(kShader_Vertex_Position, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
-    gl_funcs->glEnableVertexAttribArray(kShader_Vertex_Position);
+    gl_funcs->glVertexAttribPointer(shader_vertex_position, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
+    gl_funcs->glEnableVertexAttribArray(shader_vertex_position);
 
     // vertex normal
     {
@@ -186,8 +186,8 @@ void OpenGLObject::init(GraphicsGeometry&& graphics_geometry)
                            graphics_geometry.vertex_positions.data(),
                            GL_STATIC_DRAW);
 
-    gl_funcs->glVertexAttribPointer(kShader_Vertex_Position, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
-    gl_funcs->glEnableVertexAttribArray(kShader_Vertex_Position);
+    gl_funcs->glVertexAttribPointer(shader_vertex_position, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
+    gl_funcs->glEnableVertexAttribArray(shader_vertex_position);
 
     // vertex normal
     if (!graphics_geometry.vertex_normals.empty()) {
@@ -197,8 +197,8 @@ void OpenGLObject::init(GraphicsGeometry&& graphics_geometry)
                                graphics_geometry.vertex_normals.data(),
                                GL_STATIC_DRAW);
 
-        gl_funcs->glVertexAttribPointer(kShader_Vertex_Normal, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
-        gl_funcs->glEnableVertexAttribArray(kShader_Vertex_Normal);
+        gl_funcs->glVertexAttribPointer(shader_vertex_normal, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
+        gl_funcs->glEnableVertexAttribArray(shader_vertex_normal);
     }
 
     // vertex color
@@ -208,8 +208,8 @@ void OpenGLObject::init(GraphicsGeometry&& graphics_geometry)
                            graphics_geometry.vertex_colors.data(),
                            GL_STATIC_DRAW);
 
-    gl_funcs->glVertexAttribPointer(kShader_Vertex_Color, 4, GL_FLOAT, GL_FALSE, 0, nullptr);
-    gl_funcs->glEnableVertexAttribArray(kShader_Vertex_Color);
+    gl_funcs->glVertexAttribPointer(shader_vertex_color, 4, GL_FLOAT, GL_FALSE, 0, nullptr);
+    gl_funcs->glEnableVertexAttribArray(shader_vertex_color);
 
     // texture coords
     gl_funcs->glBindBuffer(GL_ARRAY_BUFFER, tex_coord_bo_);
@@ -218,8 +218,8 @@ void OpenGLObject::init(GraphicsGeometry&& graphics_geometry)
                            graphics_geometry.texture_coords.data(),
                            GL_STATIC_DRAW);
 
-    gl_funcs->glVertexAttribPointer(kShader_Texture, 2, GL_FLOAT, GL_FALSE, 0, nullptr);
-    gl_funcs->glEnableVertexAttribArray(kShader_Texture);
+    gl_funcs->glVertexAttribPointer(shader_texture, 2, GL_FLOAT, GL_FALSE, 0, nullptr);
+    gl_funcs->glEnableVertexAttribArray(shader_texture);
 
     // indices
     gl_funcs->glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, index_bo_);

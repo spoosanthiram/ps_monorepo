@@ -2,13 +2,13 @@
 
 namespace ps::viz {
 
-constexpr int kInitial_Width = 1300;
-constexpr int kInitial_Height = 900;
+constexpr int initial_width = 1300;
+constexpr int initial_height = 900;
 
 MainWindow::MainWindow()
 {
     setWindowTitle("Viewer");
-    setGeometry(0, 0, kInitial_Width, kInitial_Height);
+    setGeometry(0, 0, initial_width, initial_height);
 
     gl_view_ = new OpenGLWidget{this};
     setCentralWidget(gl_view_);

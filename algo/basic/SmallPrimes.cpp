@@ -56,8 +56,8 @@ uint32_t SmallPrimes::get_prime(uint32_t i)
 
 bool is_prime(uint32_t n)
 {
-    constexpr auto kFirst_Prime = 2;
-    if (n < kFirst_Prime) {
+    constexpr auto first_prime = 2;
+    if (n < first_prime) {
         return false;
     }
 

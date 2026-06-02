@@ -10,8 +10,8 @@ ViewpointCamera::ViewpointCamera()
 
 void ViewpointCamera::zoom(int steps)
 {
-    constexpr double kZoom_Scale = 0.05;
-    zoom_level_ -= steps * kZoom_Scale;
+    constexpr double zoom_scale = 0.05;
+    zoom_level_ -= steps * zoom_scale;
     update_view_matrix();
 }
 

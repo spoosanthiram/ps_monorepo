@@ -5,23 +5,23 @@
 
 namespace Ps::Algo {
 
-constexpr auto kFourBitParityLookup = 0b0110100110010110;
-constexpr uint32_t k4BitsReverseLookup[16] = {0b0000,
-                                              0b1000,
-                                              0b0100,
-                                              0b1100,
-                                              0b0010,
-                                              0b1010,
-                                              0b0110,
-                                              0b1110,
-                                              0b0001,
-                                              0b1001,
-                                              0b0101,
-                                              0b1101,
-                                              0b0011,
-                                              0b1011,
-                                              0b0111,
-                                              0b1111};
+constexpr auto four_bit_parity_lookup = 0b0110100110010110;
+constexpr uint32_t four_bits_reverse_lookup[16] = {0b0000,
+                                                   0b1000,
+                                                   0b0100,
+                                                   0b1100,
+                                                   0b0010,
+                                                   0b1010,
+                                                   0b0110,
+                                                   0b1110,
+                                                   0b0001,
+                                                   0b1001,
+                                                   0b0101,
+                                                   0b1101,
+                                                   0b0011,
+                                                   0b1011,
+                                                   0b0111,
+                                                   0b1111};
 
 bool parity(uint64_t x)
 {
@@ -42,7 +42,7 @@ bool parity_using_lookup(uint64_t x)
 
     x = x & 0xf;
 
-    return (kFourBitParityLookup >> x) & 1;
+    return (four_bit_parity_lookup >> x) & 1;
 }
 
 uint64_t swap_bits(uint64_t x, uint32_t i, uint32_t j)
@@ -60,7 +60,7 @@ uint64_t reverse_bits(uint64_t x)
     const auto len = static_cast<int>(sizeof(uint64_t) * 2); // 4 bit lookup, so number of bytes * 2
     for (int i = 0; i < len; ++i) {
         y <<= 4;
-        y |= k4BitsReverseLookup[x & 0xf];
+        y |= four_bits_reverse_lookup[x & 0xf];
         x >>= 4;
     }
     return y;

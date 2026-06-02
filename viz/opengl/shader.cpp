@@ -52,10 +52,10 @@ void Shader::compile(const std::filesystem::path& file_path)
     GLint is_compiled;
     gl_api->glGetShaderiv(shader_id_, GL_COMPILE_STATUS, &is_compiled);
     if (is_compiled == GL_FALSE) {
-        constexpr auto kLog_Length = 1024;
+        constexpr auto log_length = 1024;
         GLsizei log_lenth;
-        char log[kLog_Length];
-        gl_api->glGetShaderInfoLog(shader_id_, kLog_Length, &log_lenth, static_cast<char*>(log));
+        char log[log_length];
+        gl_api->glGetShaderInfoLog(shader_id_, log_length, &log_lenth, static_cast<char*>(log));
         throw std::runtime_error{std::format("{} compilation failed. Error: {}", get_type_str(), log)};
     }
 }
