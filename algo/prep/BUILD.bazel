@@ -1,13 +1,6 @@
 load("//bazel:ps_cc_rules.bzl", "ps_cc_library")
 
 ps_cc_library(
-    name = "Strings",
-    srcs = ["Strings.cpp"],
-    hdrs = ["Strings.h"],
-    visibility = [":__subpackages__"],
-)
-
-ps_cc_library(
     name = "Recursion",
     srcs = ["Recursion.cpp"],
     hdrs = ["Recursion.h"],

@@ -50,10 +50,10 @@ void ShaderProgram::link() const
     GLint is_linked;
     gl_api->glGetProgramiv(program_id_, GL_LINK_STATUS, &is_linked);
     if (is_linked == GL_FALSE) {
-        constexpr auto kLog_Length = 1024;
+        constexpr auto log_length = 1024;
         GLsizei log_lenth;
-        char log[kLog_Length];
-        gl_api->glGetProgramInfoLog(program_id_, kLog_Length, &log_lenth, static_cast<char*>(log));
+        char log[log_length];
+        gl_api->glGetProgramInfoLog(program_id_, log_length, &log_lenth, static_cast<char*>(log));
         throw std::runtime_error{std::string{"Failed to link the shader program. Error: "} + log};
     }
 }

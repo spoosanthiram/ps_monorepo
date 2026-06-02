@@ -36,18 +36,18 @@ void HuffTree::print_codes(std::ostream& stream)
 
 std::vector<HuffData> HuffTree::read_symbols(std::istream& stream)
 {
-    constexpr auto kMax_Symbols = 255;
+    constexpr auto max_symbols = 255;
 
     std::vector<HuffData> symbols;
-    symbols.reserve(kMax_Symbols + 1);
+    symbols.reserve(max_symbols + 1);
 
-    for (int i = 0; i <= kMax_Symbols; ++i) {
+    for (int i = 0; i <= max_symbols; ++i) {
         symbols.emplace_back(i);
     }
 
     char ch;
     while (stream.get(ch)) {
-        if (ch < 0 || static_cast<int>(ch) >= kMax_Symbols) {
+        if (ch < 0 || static_cast<int>(ch) >= max_symbols) {
             throw std::runtime_error{"Character not supported currently!"};
         }
 

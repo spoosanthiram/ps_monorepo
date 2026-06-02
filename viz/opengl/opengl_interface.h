@@ -4,8 +4,8 @@
 
 namespace ps::viz {
 
-constexpr int kOpenGL_Major_Version = 4;
-constexpr int kOpenGL_Minor_Version = 5;
+constexpr int opengl_major_version = 4;
+constexpr int opengl_minor_version = 5;
 
 class OpenGLInterface
 {

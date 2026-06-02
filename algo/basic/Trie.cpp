@@ -6,14 +6,14 @@ namespace Ps::Algo {
 
 void Trie::insert(const std::string& key, int value)
 {
-    if (value == kNo_Value) {
+    if (value == no_value) {
         throw std::invalid_argument{"Invalid value"};
     }
 
     Node* node = root_;
     for (char ch : key) {
         ch = ch - 'a';
-        if (ch < 0 || ch >= kAlphabet_Size) {
+        if (ch < 0 || ch >= alphabet_size) {
             throw std::invalid_argument{"Key needs to be in lower case alphabet"};
         }
 
@@ -34,7 +34,7 @@ Trie::Node* Trie::get_node(const std::string& key) const
     char ch;
     for (std::size_t i = 0; node && i < key.size(); ++i) {
         ch = key[i] - 'a';
-        if (ch < 0 || ch >= kAlphabet_Size) {
+        if (ch < 0 || ch >= alphabet_size) {
             throw std::invalid_argument{"Key needs to be in lower case alphabet"};
         }
         node = node->link[ch];
@@ -48,11 +48,11 @@ void Trie::keys_with_prefix(Node* node, std::string key, std::vector<std::string
         return;
     }
 
-    if (node->value != kNo_Value) {
+    if (node->value != no_value) {
         result.push_back(key);
     }
 
-    for (char i = 0; i < kAlphabet_Size; ++i) {
+    for (char i = 0; i < alphabet_size; ++i) {
         if (node->link[i]) {
             std::string newKey = key;
             newKey += ('a' + i);

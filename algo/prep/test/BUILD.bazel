@@ -1,16 +1,6 @@
 load("@rules_cc//cc:defs.bzl", "cc_test")
 
 cc_test(
-    name = "StringsTest",
-    size = "small",
-    srcs = ["StringsTest.cpp"],
-    deps = [
-        "//algo/prep:Strings",
-        "@catch2//:catch2_main",
-    ],
-)
-
-cc_test(
     name = "RecursionTest",
     size = "small",
     srcs = ["RecursionTest.cpp"],

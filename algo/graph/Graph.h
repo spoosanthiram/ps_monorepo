@@ -9,7 +9,7 @@
 
 namespace Ps::Algo {
 
-constexpr char kSeparator = '\t';
+constexpr auto separator = '\t';
 
 using vertexid_t = uint32_t;
 using edgeid_t = uint64_t;
@@ -161,7 +161,7 @@ void Graph<VertexType, EdgeType>::write_adjacency_list(std::ostream& output_stre
     }
 
     const auto n = vertices_size();
-    output_stream << n << kSeparator << edges_size() << "\n\n";
+    output_stream << n << separator << edges_size() << "\n\n";
 
     for (vertexid_t id = 0; id < n; ++id) {
         const auto& vertex = get_vertex(id);

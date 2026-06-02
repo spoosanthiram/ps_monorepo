@@ -6,21 +6,21 @@
 
 namespace Ps::Algo {
 
-constexpr auto kAlphabet_Size = 26;
-constexpr auto kNo_Value = -1;
+constexpr auto alphabet_size = 26;
+constexpr auto no_value = -1;
 
 class Trie
 {
 public:
     struct Node
     {
-        Node(int val = kNo_Value)
+        Node(int val = no_value)
             : value{val}
         {
             link.fill(nullptr);
         }
         int value;
-        std::array<Node*, kAlphabet_Size> link;
+        std::array<Node*, alphabet_size> link;
     };
 
 public:
@@ -29,7 +29,7 @@ public:
     int value(const std::string& key) const
     {
         Node* node = get_node(key);
-        return node ? node->value : kNo_Value;
+        return node ? node->value : no_value;
     }
     std::vector<std::string> keys_with_prefix(const std::string& prefix) const
     {

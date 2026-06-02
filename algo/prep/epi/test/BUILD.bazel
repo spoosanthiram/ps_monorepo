@@ -20,15 +20,15 @@ cc_test(
     ],
 )
 
-# cc_test(
-#     name = "StringsTest",
-#     size = "small",
-#     srcs = ["StringsTest.cpp"],
-#     deps = [
-#         "//algo/prep:Strings",
-#         "@catch2//:catch2_main",
-#     ],
-# )
+cc_test(
+    name = "StringsTest",
+    size = "small",
+    srcs = ["StringsTest.cpp"],
+    deps = [
+        "//algo/prep/epi:Strings",
+        "@catch2//:catch2_main",
+    ],
+)
 
 # cc_test(
 #     name = "RecursionTest",
