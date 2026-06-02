@@ -1,0 +1,31 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+load("@rules_python//python:defs.bzl", "py_binary")
+
+cc_binary(
+    name = "hdf5_test",
+    srcs = ["hdf5_test.cpp"],
+    data = ["//ai/deep_learning/dataset:catvnoncat"],
+    deps = [
+        "@local_hdf5//:hdf5_cpp",
+    ],
+)
+
+filegroup(
+    name = "images",
+    srcs = glob(["data/**"]),
+)
+
+py_binary(
+    name = "model",
+    srcs = ["model.py"],
+    main = "model.py",
+    deps = [
+        "@pypi//h5py",
+        "@pypi//matplotlib",
+        "@pypi//numpy",
+    ],
+    data = [
+        ":images",
+        "//ai/deep_learning/dataset:catvnoncat",
+    ],
+)

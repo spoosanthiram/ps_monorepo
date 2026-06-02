@@ -1,0 +1,10 @@
+filegroup(
+    name = "catvnoncat",
+    srcs = [
+        "test_catvnoncat.h5",
+        "train_catvnoncat.h5",
+    ],
+    visibility = [
+        "//ai/deep_learning/logistic_regression:__pkg__",
+    ],
+)
