@@ -1,5 +1,6 @@
 #include "Strings.h"
 
+#include <algorithm>
 #include <array>
 #include <forward_list>
 

@@ -55,42 +55,10 @@ void OpenGLWidget::initializeGL()
 
     load_shaders();
 
-    // opengl_object_ = std::make_unique<OpenGLObject>("graphics/data/models/model.bin");
+    opengl_object_ = std::make_unique<OpenGLObject>("viz/data/models/model.bin");
 
-    // create Geometry
-    // {
-    //     GraphicsGeometry geom;
-
-    //     geom.vertex_positions.push_back({-0.5f, -0.5f, -2.5f});  // bottom left
-    //     geom.vertex_positions.push_back({0.5f, -0.5f, -2.5f});   // bottom right
-    //     geom.vertex_positions.push_back({0.5f, 0.5f, -2.5f});    // top right
-    //     geom.vertex_positions.push_back({-0.5f, 0.5f, -2.5f});   // top lef
-
-    //     geom.vertex_colors.push_back({1.0f, 0.0f, 0.0f, 1.0f});  // bottom left color
-    //     geom.vertex_colors.push_back({0.0f, 1.0f, 0.0f, 1.0f});  // bottom right color
-    //     geom.vertex_colors.push_back({0.0f, 0.0f, 1.0f, 1.0f});  // top right color
-    //     geom.vertex_colors.push_back({1.0f, 1.0f, 0.0f, 1.0f});  // top lef color
-
-    //     geom.texture_coords.push_back({0.0f, 0.0f});
-    //     geom.texture_coords.push_back({1.0f, 0.0f});
-    //     geom.texture_coords.push_back({1.0f, 1.0f});
-    //     geom.texture_coords.push_back({0.0f, 1.0f});
-
-    //     // triangle 1
-    //     geom.indices.push_back(0);
-    //     geom.indices.push_back(1);
-    //     geom.indices.push_back(2);
-
-    //     // triangle 2
-    //     geom.indices.push_back(0);
-    //     geom.indices.push_back(2);
-    //     geom.indices.push_back(3);
-
-    //     opengl_object_ = std::make_unique<OpenGLObject>(std::move(geom));
-    // }
-
-    GlTF gltf{"graphics/data/models/box/gltf-embedded/box.gltf"};
-    opengl_object_ = std::make_unique<OpenGLObject>(gltf);
+    // GlTF gltf{"viz/data/models/box/gltf-embedded/box.gltf"};
+    // opengl_object_ = std::make_unique<OpenGLObject>(gltf);
 }
 
 void OpenGLWidget::resizeGL(int width, int height)
@@ -102,7 +70,7 @@ void OpenGLWidget::resizeGL(int width, int height)
     width_ = width;
     height_ = height;
 
-    constexpr double fovy = 45.0;
+    constexpr double fovy = 60.0;
     constexpr double near = 1.0;
     constexpr double far = 100.0;
 
@@ -159,11 +127,11 @@ void OpenGLWidget::load_shaders()
     shader_program_ = std::unique_ptr<ShaderProgram>{new ShaderProgram{}};
 
     Shader vertex_shader{GL_VERTEX_SHADER};
-    vertex_shader.compile("graphics/shaders/simple.vert");
+    vertex_shader.compile("viz/shaders/simple.vert");
     shader_program_->attach_shader(std::move(vertex_shader));
 
     Shader fragement_shader{GL_FRAGMENT_SHADER};
-    fragement_shader.compile("graphics/shaders/simple.frag");
+    fragement_shader.compile("viz/shaders/simple.frag");
     shader_program_->attach_shader(std::move(fragement_shader));
 
     shader_program_->link();

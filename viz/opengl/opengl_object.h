@@ -34,6 +34,7 @@ public:
 
 private:
     void init(GraphicsGeometry&& graphics_geometry);
+    void reset_ids();
 
 private:
     /// @brief Vertex array & buffer object ids
@@ -42,8 +43,6 @@ private:
     GLuint normal_bo_{0};
     GLuint color_bo_{0};
     GLuint index_bo_{0};
-    GLuint tex_coord_bo_{0};
-    GLuint texture_{0};
 
     /// @brief Number of indices needed to render
     uint32_t indices_size_{0};
