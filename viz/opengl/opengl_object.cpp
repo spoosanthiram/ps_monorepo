@@ -3,16 +3,13 @@
 #include "viz/geometry/gltf_reader.h"
 #include "viz/geometry/model_reader.h"
 
-#include <QtGui/QImage>
-
 #include <iostream>
 
 namespace ps::viz {
 
 constexpr uint32_t shader_vertex_position = 0;
 constexpr uint32_t shader_vertex_normal = 1;
-constexpr uint32_t shader_vertex_color = 1;
-constexpr uint32_t shader_texture = 2;
+constexpr uint32_t shader_vertex_color = 2;
 
 OpenGLObject::OpenGLObject(const std::filesystem::path& file_path)
 {
@@ -80,12 +77,8 @@ OpenGLObject::~OpenGLObject()
     auto gl_funcs = OpenGLInterface::get_api();
 
     gl_funcs->glDeleteBuffers(1, &position_bo_);
-    if (normal_bo_ != 0) {
-        gl_funcs->glDeleteBuffers(1, &normal_bo_);
-    }
-    if (color_bo_ != 0) {
-        gl_funcs->glDeleteBuffers(1, &color_bo_);
-    }
+    gl_funcs->glDeleteBuffers(1, &normal_bo_);
+    gl_funcs->glDeleteBuffers(1, &color_bo_);
     gl_funcs->glDeleteBuffers(1, &index_bo_);
 
     gl_funcs->glDeleteVertexArrays(1, &vao_);
@@ -93,18 +86,14 @@ OpenGLObject::~OpenGLObject()
 
 OpenGLObject::OpenGLObject(OpenGLObject&& other) noexcept
     : vao_{other.vao_}
-    , position_bo_{other.position_bo_} // , normal_bo_{other.normal_bo_}
+    , position_bo_{other.position_bo_}
+    , normal_bo_{other.normal_bo_}
     , color_bo_{other.color_bo_}
     , index_bo_{other.index_bo_}
     , indices_size_{other.indices_size_}
 {
     // Reset the moved object ids to 0 so the GPU buffer doesn't get deleted twice
-    other.vao_ = 0;
-    other.position_bo_ = 0;
-    other.normal_bo_ = 0;
-    other.color_bo_ = 0;
-    other.index_bo_ = 0;
-    other.indices_size_ = 0;
+    other.reset_ids();
 }
 
 OpenGLObject& OpenGLObject::operator=(OpenGLObject&& other) noexcept
@@ -117,12 +106,7 @@ OpenGLObject& OpenGLObject::operator=(OpenGLObject&& other) noexcept
     indices_size_ = other.indices_size_;
 
     // Reset the moved object ids to 0 so the GPU buffer doesn't get deleted twice
-    other.vao_ = 0;
-    other.position_bo_ = 0;
-    other.normal_bo_ = 0;
-    other.color_bo_ = 0;
-    other.index_bo_ = 0;
-    other.indices_size_ = 0;
+    other.reset_ids();
 
     return *this;
 }
@@ -135,9 +119,8 @@ void OpenGLObject::render(const std::unique_ptr<ShaderProgram>& /*shader_program
 
     auto gl_funcs = OpenGLInterface::get_api();
 
-    // gl_funcs->glBindTexture(GL_TEXTURE_2D, texture_);
     gl_funcs->glBindVertexArray(vao_);
-    gl_funcs->glDrawElements(GL_TRIANGLES, indices_size_, GL_UNSIGNED_SHORT, nullptr);
+    gl_funcs->glDrawElements(GL_TRIANGLES, indices_size_, GL_UNSIGNED_INT, nullptr);
 }
 
 void OpenGLObject::init(GraphicsGeometry&& graphics_geometry)
@@ -146,35 +129,14 @@ void OpenGLObject::init(GraphicsGeometry&& graphics_geometry)
         return;
     }
 
-    QImage tex_image;
-    tex_image.load("graphics/data/textures/container.jpg");
-    tex_image.convertTo(QImage::Format_RGB888);
-    std::cout << "Image width: " << tex_image.width() << ", height: " << tex_image.height()
-              << ", depth: " << tex_image.depth() << '\n';
-    std::cout << "Image format: " << tex_image.format() << '\n';
-
     auto gl_funcs = OpenGLInterface::get_api();
-
-    gl_funcs->glGenTextures(1, &texture_);
-    gl_funcs->glBindTexture(GL_TEXTURE_2D, texture_);
-    gl_funcs->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    gl_funcs->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    gl_funcs->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-    gl_funcs->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    auto tex_image_data = tex_image.constBits();
-    gl_funcs->glTexImage2D(
-        GL_TEXTURE_2D, 0, GL_RGB, tex_image.width(), tex_image.height(), 0, GL_RGB, GL_UNSIGNED_BYTE, tex_image_data);
-    gl_funcs->glGenerateMipmap(GL_TEXTURE_2D);
 
     // Create OpenGL vertex array id and buffer ids
     gl_funcs->glGenVertexArrays(1, &vao_);
     gl_funcs->glGenBuffers(1, &position_bo_);
-    if (!graphics_geometry.vertex_normals.empty()) {
-        gl_funcs->glGenBuffers(1, &normal_bo_);
-    }
+    gl_funcs->glGenBuffers(1, &normal_bo_);
     gl_funcs->glGenBuffers(1, &color_bo_);
     gl_funcs->glGenBuffers(1, &index_bo_);
-    gl_funcs->glGenBuffers(1, &tex_coord_bo_);
 
     // Fill OpenGL buffers and set attributes
     gl_funcs->glBindVertexArray(vao_);
@@ -190,16 +152,14 @@ void OpenGLObject::init(GraphicsGeometry&& graphics_geometry)
     gl_funcs->glEnableVertexAttribArray(shader_vertex_position);
 
     // vertex normal
-    if (!graphics_geometry.vertex_normals.empty()) {
-        gl_funcs->glBindBuffer(GL_ARRAY_BUFFER, normal_bo_);
-        gl_funcs->glBufferData(GL_ARRAY_BUFFER,
-                               graphics_geometry.vertex_normals_buffer_size(),
-                               graphics_geometry.vertex_normals.data(),
-                               GL_STATIC_DRAW);
+    gl_funcs->glBindBuffer(GL_ARRAY_BUFFER, normal_bo_);
+    gl_funcs->glBufferData(GL_ARRAY_BUFFER,
+                           graphics_geometry.vertex_normals_buffer_size(),
+                           graphics_geometry.vertex_normals.data(),
+                           GL_STATIC_DRAW);
 
-        gl_funcs->glVertexAttribPointer(shader_vertex_normal, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
-        gl_funcs->glEnableVertexAttribArray(shader_vertex_normal);
-    }
+    gl_funcs->glVertexAttribPointer(shader_vertex_normal, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
+    gl_funcs->glEnableVertexAttribArray(shader_vertex_normal);
 
     // vertex color
     gl_funcs->glBindBuffer(GL_ARRAY_BUFFER, color_bo_);
@@ -211,16 +171,6 @@ void OpenGLObject::init(GraphicsGeometry&& graphics_geometry)
     gl_funcs->glVertexAttribPointer(shader_vertex_color, 4, GL_FLOAT, GL_FALSE, 0, nullptr);
     gl_funcs->glEnableVertexAttribArray(shader_vertex_color);
 
-    // texture coords
-    gl_funcs->glBindBuffer(GL_ARRAY_BUFFER, tex_coord_bo_);
-    gl_funcs->glBufferData(GL_ARRAY_BUFFER,
-                           graphics_geometry.texture_coords_buffer_size(),
-                           graphics_geometry.texture_coords.data(),
-                           GL_STATIC_DRAW);
-
-    gl_funcs->glVertexAttribPointer(shader_texture, 2, GL_FLOAT, GL_FALSE, 0, nullptr);
-    gl_funcs->glEnableVertexAttribArray(shader_texture);
-
     // indices
     gl_funcs->glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, index_bo_);
     gl_funcs->glBufferData(GL_ELEMENT_ARRAY_BUFFER,
@@ -229,6 +179,16 @@ void OpenGLObject::init(GraphicsGeometry&& graphics_geometry)
                            GL_STATIC_DRAW);
 
     indices_size_ = static_cast<uint32_t>(graphics_geometry.indices.size());
+}
+
+void OpenGLObject::reset_ids()
+{
+    vao_ = 0;
+    position_bo_ = 0;
+    normal_bo_ = 0;
+    color_bo_ = 0;
+    index_bo_ = 0;
+    indices_size_ = 0;
 }
 
 } // namespace ps::viz
