@@ -1,6 +1,7 @@
 #include <H5Cpp.h>
 
 #include <iostream>
+#include <vector>
 
 int main()
 {
