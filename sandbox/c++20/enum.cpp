@@ -37,7 +37,7 @@ int main()
     Color c = Color::Blue;
     Color c2{6};
 
-    std::cout << "c2: " << to_string(c2) << '\n';
+    std::cout << "c: " << static_cast<int>(c) << "c2: " << to_string(c2) << '\n';
 
     return 0;
 }
