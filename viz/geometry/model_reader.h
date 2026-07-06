@@ -1,6 +1,6 @@
 #pragma once
 
-#include "graphics_geometry.h"
+#include "viz/geometry/graphics_geometry.h"
 
 #include <filesystem>
 

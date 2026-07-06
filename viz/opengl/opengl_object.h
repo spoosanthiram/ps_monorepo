@@ -1,10 +1,9 @@
 #pragma once
 
-#include "opengl_interface.h"
-#include "shader_program.h"
-
-#include "core/utils/ClassHelper.h"
+#include "utils/class_helper.h"
 #include "viz/geometry/graphics_geometry.h"
+#include "viz/opengl/opengl_interface.h"
+#include "viz/opengl/shader_program.h"
 
 #include <filesystem>
 #include <memory>

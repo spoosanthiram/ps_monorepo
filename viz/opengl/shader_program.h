@@ -1,9 +1,8 @@
 #pragma once
 
-#include "shader.h"
-
-#include "core/utils/ClassHelper.h"
+#include "utils/class_helper.h"
 #include "viz/geometry/graphics_geometry.h"
+#include "viz/opengl/shader.h"
 
 namespace ps::viz {
 

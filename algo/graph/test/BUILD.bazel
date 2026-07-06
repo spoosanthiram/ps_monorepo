@@ -6,195 +6,147 @@ filegroup(
 )
 
 cc_test(
-    name = "KargerMinCutGraphTest",
+    name = "karger_mincut_graph_test",
     size = "small",
-    srcs = ["KargerMinCutGraphTest.cpp"],
+    srcs = ["karger_mincut_graph_test.cpp"],
     data = ["data"],
     deps = [
-        "//algo/graph:KargerMinCutGraph",
-        "//core/utils:Utils",
+        "//algo/graph:karger_mincut_graph",
+        "//utils",
         "@catch2//:catch2_main",
     ],
 )
 
 cc_test(
-    name = "AlgoClassKargerMinCutGraphTest",
+    name = "karger_mincut_graph_test_big",
     size = "small",
     timeout = "eternal",
-    srcs = ["AlgoClassKargerMinCutGraphTest.cpp"],
+    srcs = ["karger_mincut_graph_test_big.cpp"],
     data = ["data"],
     deps = [
-        "//algo/graph:KargerMinCutGraph",
-        "//core/utils:Utils",
+        "//algo/graph:karger_mincut_graph",
+        "//utils",
         "@catch2//:catch2_main",
     ],
 )
 
 cc_test(
-    name = "BreadthFirstGraphTest",
+    name = "breadth_first_graph_test",
     size = "small",
-    srcs = ["BreadthFirstGraphTest.cpp"],
+    srcs = ["breadth_first_graph_test.cpp"],
     data = ["data"],
     deps = [
-        "//algo/graph:BreadthFirstGraph",
-        "//core/utils:Utils",
+        "//algo/graph:breadth_first_graph",
+        "//utils",
         "@catch2//:catch2_main",
     ],
 )
 
 cc_test(
-    name = "StronglyConnectedGraphTest",
+    name = "strongly_connected_graph_test",
     size = "small",
-    srcs = ["StronglyConnectedGraphTest.cpp"],
+    srcs = ["strongly_connected_graph_test.cpp"],
     data = ["data"],
     deps = [
-        "//algo/graph:StronglyConnectedGraph",
-        "//core/utils:Utils",
+        "//algo/graph:strongly_connected_graph",
+        "//utils",
         "@catch2//:catch2_main",
     ],
 )
 
 cc_test(
-    name = "AlgoClassStronglyConnectedGraphTest",
+    name = "strongly_connected_graph_test_big",
     size = "enormous",
     timeout = "short",
-    srcs = ["AlgoClassStronglyConnectedGraphTest.cpp"],
+    srcs = ["strongly_connected_graph_test_big.cpp"],
     data = ["data"],
     deps = [
-        "//algo/graph:StronglyConnectedGraph",
-        "//core/utils:Utils",
+        "//algo/graph:strongly_connected_graph",
+        "//utils",
         "@catch2//:catch2_main",
     ],
 )
 
 cc_test(
-    name = "DijkstraGraphTest",
+    name = "dijkstra_graph_test",
     size = "small",
-    srcs = ["DijkstraGraphTest.cpp"],
+    srcs = ["dijkstra_graph_test.cpp"],
     data = ["data"],
     deps = [
-        "//algo/graph:DijkstraGraph",
-        "//core/utils:Utils",
+        "//algo/graph:dijkstra_graph",
+        "//utils",
         "@catch2//:catch2_main",
     ],
 )
 
 cc_test(
-    name = "AlgoClassDijkstraGraphTest",
+    name = "prim_min_spanning_graph_test",
     size = "small",
-    srcs = ["AlgoClassDijkstraGraphTest.cpp"],
+    srcs = ["prim_min_spanning_graph_test.cpp"],
     data = ["data"],
     deps = [
-        "//algo/graph:DijkstraGraph",
-        "//core/utils:Utils",
+        "//algo/graph:prim_min_spanning_graph",
+        "//utils",
         "@catch2//:catch2_main",
     ],
 )
 
 cc_test(
-    name = "PrimMinSpanningGraphTest",
+    name = "kruskal_min_spanning_graph_test",
     size = "small",
-    srcs = ["PrimMinSpanningGraphTest.cpp"],
+    srcs = ["kruskal_min_spanning_graph_test.cpp"],
     data = ["data"],
     deps = [
-        "//algo/graph:PrimMinSpanningGraph",
-        "//core/utils:Utils",
+        "//algo/graph:kruskal_min_spanning_graph",
+        "//utils",
         "@catch2//:catch2_main",
     ],
 )
 
 cc_test(
-    name = "AlgoClassPrimMinSpanningGraphTest",
+    name = "bellman_ford_graph_test",
     size = "small",
-    srcs = ["AlgoClassPrimMinSpanningGraphTest.cpp"],
+    srcs = ["bellman_ford_graph_test.cpp"],
     data = ["data"],
     deps = [
-        "//algo/graph:PrimMinSpanningGraph",
-        "//core/utils:Utils",
+        "//algo/graph:bellman_ford_graph",
+        "//utils",
         "@catch2//:catch2_main",
     ],
 )
 
 cc_test(
-    name = "KruskalMinSpanningGraphTest",
+    name = "all_pair_shortest_path_graph_test",
     size = "small",
-    srcs = ["KruskalMinSpanningGraphTest.cpp"],
+    srcs = ["all_pair_shortest_path_graph_test.cpp"],
     data = ["data"],
     deps = [
-        "//algo/graph:KruskalMinSpanningGraph",
-        "//core/utils:Utils",
+        "//algo/graph:all_pair_shortest_path_graph",
+        "//utils",
         "@catch2//:catch2_main",
     ],
 )
 
 cc_test(
-    name = "AlgoClassKruskalMstTest",
-    size = "small",
-    srcs = ["AlgoClassKruskalMstTest.cpp"],
-    data = ["data"],
-    deps = [
-        "//algo/graph:KruskalMinSpanningGraph",
-        "//core/utils:Utils",
-        "@catch2//:catch2_main",
-    ],
-)
-
-cc_test(
-    name = "AlgoClassKruskalClusteringTest",
-    size = "small",
-    srcs = ["AlgoClassKruskalClusteringTest.cpp"],
-    data = ["data"],
-    deps = [
-        "//algo/graph:KruskalMinSpanningGraph",
-        "//core/utils:Utils",
-        "@catch2//:catch2_main",
-    ],
-)
-
-cc_test(
-    name = "BellmanFordGraphTest",
-    size = "small",
-    srcs = ["BellmanFordGraphTest.cpp"],
-    data = ["data"],
-    deps = [
-        "//algo/graph:BellmanFordGraph",
-        "//core/utils:Utils",
-        "@catch2//:catch2_main",
-    ],
-)
-
-cc_test(
-    name = "AllPairShortestPathGraphTest",
-    size = "small",
-    srcs = ["AllPairShortestPathGraphTest.cpp"],
-    data = ["data"],
-    deps = [
-        "//algo/graph:AllPairShortestPathGraph",
-        "//core/utils:Utils",
-        "@catch2//:catch2_main",
-    ],
-)
-
-cc_test(
-    name = "AllPairShortestPathGraphLargeTest",
+    name = "all_pair_shortest_path_graph_large_test",
     size = "enormous",
-    srcs = ["AllPairShortestPathGraphLargeTest.cpp"],
+    srcs = ["all_pair_shortest_path_graph_large_test.cpp"],
     data = ["data"],
     deps = [
-        "//algo/graph:AllPairShortestPathGraph",
-        "//core/utils:Utils",
+        "//algo/graph:all_pair_shortest_path_graph",
+        "//utils",
         "@catch2//:catch2_main",
     ],
 )
 
 cc_test(
-    name = "BitVertexClusteringGraphTest",
+    name = "bit_vertex_clustering_graph_test",
     size = "enormous",
-    srcs = ["BitVertexClusteringGraphTest.cpp"],
+    srcs = ["bit_vertex_clustering_graph_test.cpp"],
     data = ["data"],
     deps = [
-        "//algo/graph:BitVertexClusteringGraph",
-        "//core/utils:Utils",
+        "//algo/graph:bit_vertex_clustering_graph",
+        "//utils",
         "@catch2//:catch2_main",
     ],
 )

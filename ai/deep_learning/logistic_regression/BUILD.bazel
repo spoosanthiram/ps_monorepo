@@ -18,14 +18,14 @@ filegroup(
 py_binary(
     name = "model",
     srcs = ["model.py"],
+    data = [
+        ":images",
+        "//ai/deep_learning/dataset:catvnoncat",
+    ],
     main = "model.py",
     deps = [
         "@pypi//h5py",
         "@pypi//matplotlib",
         "@pypi//numpy",
-    ],
-    data = [
-        ":images",
-        "//ai/deep_learning/dataset:catvnoncat",
     ],
 )

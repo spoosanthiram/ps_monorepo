@@ -1,19 +1,19 @@
-#include "sandbox/roblox/multiples.h"
+#include "multiples.h"
 
 #include <format>
 
-namespace Ps::Algo {
+namespace ps::algo {
 
-Ps::Algo::Int nth_multiple_byte_stream(uint32_t nth_pos)
+Int nth_multiple_byte_stream(uint32_t nth_pos)
 {
     const auto t0 = std::chrono::system_clock::now();
 
     uint32_t ith_pos = 0;
-    auto ith_multiple = Ps::Algo::Int{0}; // Hold the ith_pos multiple
+    auto ith_multiple = Int{0}; // Hold the ith_pos multiple
 
-    std::set<Ps::Algo::Int> intermediate; // std::set to keep numbers sorted & not to allow duplicate
-    intermediate.insert(Ps::Algo::Int{1});
-    Ps::Algo::Int x2, x3, x5;
+    std::set<Int> intermediate; // std::set to keep numbers sorted & not to allow duplicate
+    intermediate.insert(Int{1});
+    Int x2, x3, x5;
     while (ith_pos < nth_pos) {
         ith_multiple = *intermediate.begin();
         intermediate.erase(intermediate.begin());
@@ -42,4 +42,4 @@ Ps::Algo::Int nth_multiple_byte_stream(uint32_t nth_pos)
     return ith_multiple;
 }
 
-} // namespace Ps::Algo
+} // namespace ps::algo

@@ -2,9 +2,9 @@ load("@rules_cc//cc:cc_library.bzl", "cc_library")
 load("//bazel:ps_cc_rules.bzl", "ps_cc_library")
 
 ps_cc_library(
-    name = "Algo",
-    srcs = ["Algo.cpp"],
-    hdrs = ["Algo.h"],
+    name = "algo",
+    srcs = ["algo.cpp"],
+    hdrs = ["algo.h"],
     visibility = [
         ":__subpackages__",
         "//project_euler:__subpackages__",
@@ -13,9 +13,9 @@ ps_cc_library(
 )
 
 ps_cc_library(
-    name = "SmallPrimes",
-    srcs = ["SmallPrimes.cpp"],
-    hdrs = ["SmallPrimes.h"],
+    name = "small_primes",
+    srcs = ["small_primes.cpp"],
+    hdrs = ["small_primes.h"],
     visibility = [
         ":__subpackages__",
         "//project_euler:__subpackages__",
@@ -23,95 +23,93 @@ ps_cc_library(
 )
 
 ps_cc_library(
-    name = "Sorting",
-    srcs = ["Sorting.cpp"],
-    hdrs = ["Sorting.h"],
+    name = "sorting",
+    srcs = ["sorting.cpp"],
+    hdrs = ["sorting.h"],
     visibility = [":__subpackages__"],
     deps = [
-        ":Algo",
+        ":algo",
     ],
 )
 
 ps_cc_library(
-    name = "TowerOfHanoi",
-    srcs = ["TowerOfHanoi.cpp"],
-    hdrs = ["TowerOfHanoi.h"],
+    name = "tower_of_hanoi",
+    srcs = ["tower_of_hanoi.cpp"],
+    hdrs = ["tower_of_hanoi.h"],
     visibility = [":__subpackages__"],
 )
 
 ps_cc_library(
-    name = "SinglyLinkedList",
-    srcs = ["SinglyLinkedList.cpp"],
-    hdrs = ["SinglyLinkedList.h"],
+    name = "singly_linked_list",
+    srcs = ["singly_linked_list.cpp"],
+    hdrs = ["singly_linked_list.h"],
     visibility = [":__subpackages__"],
     deps = [
-        "//core/utils:ClassHelper",
+        "//utils:class_helper",
     ],
 )
 
 ps_cc_library(
-    name = "BinaryTree",
+    name = "binary_tree",
     hdrs = [
-        "BinaryTree.h",
-        "BinaryTree.ipp",
+        "binary_tree.h",
     ],
     visibility = [":__subpackages__"],
     deps = [
-        "//core/utils:ClassHelper",
+        "//utils:class_helper",
     ],
 )
 
 ps_cc_library(
-    name = "BinarySearchTree",
+    name = "binary_search_tree",
     hdrs = [
-        "BinarySearchTree.h",
-        "BinarySearchTree.ipp",
+        "binary_search_tree.h",
     ],
     visibility = [":__subpackages__"],
     deps = [
-        ":BinaryTree",
+        ":binary_tree",
         "@spdlog",
     ],
 )
 
 ps_cc_library(
-    name = "MinHeap",
-    hdrs = ["MinHeap.h"],
+    name = "min_heap",
+    hdrs = ["min_heap.h"],
     visibility = [
         "//algo:__subpackages__",
     ],
 )
 
 ps_cc_library(
-    name = "HuffmanCode",
-    srcs = ["HuffmanCode.cpp"],
-    hdrs = ["HuffmanCode.h"],
+    name = "huffman_code",
+    srcs = ["huffman_code.cpp"],
+    hdrs = ["huffman_code.h"],
     visibility = [":__subpackages__"],
     deps = [
-        ":MinHeap",
+        ":min_heap",
     ],
 )
 
 ps_cc_library(
-    name = "HashTable",
-    srcs = ["HashTable.cpp"],
-    hdrs = ["HashTable.h"],
+    name = "hash_table",
+    srcs = ["hash_table.cpp"],
+    hdrs = ["hash_table.h"],
     visibility = [":__subpackages__"],
     deps = [
-        "//algo/basic:SmallPrimes",
+        ":small_primes",
     ],
 )
 
 cc_library(
-    name = "LRUCache",
-    srcs = ["LRUCache.cpp"],
-    hdrs = ["LRUCache.h"],
+    name = "lru_cache",
+    srcs = ["lru_cache.cpp"],
+    hdrs = ["lru_cache.h"],
     visibility = [":__subpackages__"],
 )
 
 cc_library(
-    name = "Trie",
-    srcs = ["Trie.cpp"],
-    hdrs = ["Trie.h"],
+    name = "trie",
+    srcs = ["trie.cpp"],
+    hdrs = ["trie.h"],
     visibility = [":__subpackages__"],
 )

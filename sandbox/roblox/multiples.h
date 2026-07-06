@@ -1,13 +1,13 @@
 #pragma once
 
-#include "sandbox/roblox/Int.h"
+#include "sandbox/roblox/int.h"
 
 #include <chrono>
 #include <cstdint>
 #include <iostream>
 #include <set>
 
-namespace Ps::Algo {
+namespace ps::algo {
 
 /// @brief Get nth number that occupies the position of the series
 /// 1, 2, 3, 4, 5, 6, ...
@@ -53,6 +53,6 @@ Type nth_multiple(uint32_t nth_pos)
 /// The number that are multiple of 2, 3, or 5 only (not other prime factors)
 /// @param nth_pos - nth position
 /// @return nth position number
-Ps::Algo::Int nth_multiple_byte_stream(uint32_t nth_pos);
+Int nth_multiple_byte_stream(uint32_t nth_pos);
 
-} // namespace Ps::Algo
+} // namespace ps::algo

@@ -21,7 +21,7 @@ ps_cc_library(
     ],
     deps = [
         ":opengl_interface",
-        "//core/utils:ClassHelper",
+        "//utils:class_helper",
         "//viz/geometry:graphics_geometry",
     ],
 )
@@ -39,9 +39,9 @@ ps_cc_library(
     deps = [
         ":opengl_interface",
         ":shader_program",
-        "//core/utils:ClassHelper",
+        "//utils:class_helper",
+        "//viz/geometry:gltf_reader",
         "//viz/geometry:graphics_geometry",
         "//viz/geometry:model_reader",
-        "//viz/geometry:gltf_reader",
     ],
 )

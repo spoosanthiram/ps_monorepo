@@ -1,6 +1,6 @@
 #pragma once
 
-#include "core/utils/ClassHelper.h"
+#include "utils/class_helper.h"
 #include "viz/geometry/graphics_geometry.h"
 #include "viz/geometry/viewpoint_camera.h"
 

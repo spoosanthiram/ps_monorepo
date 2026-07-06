@@ -1,97 +1,97 @@
 load("//bazel:ps_cc_rules.bzl", "ps_cc_library")
 
 ps_cc_library(
-    name = "Graph",
+    name = "graph",
     hdrs = [
-        "Graph.h",
+        "graph.h",
     ],
 )
 
 ps_cc_library(
-    name = "KargerMinCutGraph",
-    srcs = ["KargerMinCutGraph.cpp"],
-    hdrs = ["KargerMinCutGraph.h"],
+    name = "karger_mincut_graph",
+    srcs = ["karger_mincut_graph.cpp"],
+    hdrs = ["karger_mincut_graph.h"],
     visibility = [":__subpackages__"],
     deps = [
-        ":Graph",
-        "//core/utils:ClassHelper",
+        ":graph",
+        "//utils:class_helper",
     ],
 )
 
 ps_cc_library(
-    name = "BreadthFirstGraph",
-    srcs = ["BreadthFirstGraph.cpp"],
-    hdrs = ["BreadthFirstGraph.h"],
+    name = "breadth_first_graph",
+    srcs = ["breadth_first_graph.cpp"],
+    hdrs = ["breadth_first_graph.h"],
     visibility = [":__subpackages__"],
     deps = [
-        ":Graph",
+        ":graph",
     ],
 )
 
 ps_cc_library(
-    name = "StronglyConnectedGraph",
-    srcs = ["StronglyConnectedGraph.cpp"],
-    hdrs = ["StronglyConnectedGraph.h"],
+    name = "strongly_connected_graph",
+    srcs = ["strongly_connected_graph.cpp"],
+    hdrs = ["strongly_connected_graph.h"],
     visibility = [":__subpackages__"],
     deps = [
-        ":Graph",
-        "//core/utils:ClassHelper",
+        ":graph",
+        "//utils:class_helper",
     ],
 )
 
 ps_cc_library(
-    name = "DijkstraGraph",
-    srcs = ["DijkstraGraph.cpp"],
-    hdrs = ["DijkstraGraph.h"],
+    name = "dijkstra_graph",
+    srcs = ["dijkstra_graph.cpp"],
+    hdrs = ["dijkstra_graph.h"],
     visibility = [":__subpackages__"],
     deps = [
-        ":Graph",
-        "//algo/basic:MinHeap",
+        ":graph",
+        "//algo/basic:min_heap",
     ],
 )
 
 ps_cc_library(
-    name = "PrimMinSpanningGraph",
-    srcs = ["PrimMinSpanningGraph.cpp"],
-    hdrs = ["PrimMinSpanningGraph.h"],
+    name = "prim_min_spanning_graph",
+    srcs = ["prim_min_spanning_graph.cpp"],
+    hdrs = ["prim_min_spanning_graph.h"],
     visibility = [":__subpackages__"],
     deps = [
-        ":Graph",
-        "//algo/basic:MinHeap",
-        "//core/utils:ClassHelper",
+        ":graph",
+        "//algo/basic:min_heap",
+        "//utils:class_helper",
     ],
 )
 
 ps_cc_library(
-    name = "KruskalMinSpanningGraph",
-    srcs = ["KruskalMinSpanningGraph.cpp"],
-    hdrs = ["KruskalMinSpanningGraph.h"],
+    name = "kruskal_min_spanning_graph",
+    srcs = ["kruskal_min_spanning_graph.cpp"],
+    hdrs = ["kruskal_min_spanning_graph.h"],
     visibility = [":__subpackages__"],
     deps = [
-        ":Graph",
-        "//core/utils:ClassHelper",
+        ":graph",
+        "//utils:class_helper",
     ],
 )
 
 ps_cc_library(
-    name = "BellmanFordGraph",
-    srcs = ["BellmanFordGraph.cpp"],
-    hdrs = ["BellmanFordGraph.h"],
+    name = "bellman_ford_graph",
+    srcs = ["bellman_ford_graph.cpp"],
+    hdrs = ["bellman_ford_graph.h"],
     visibility = [":__subpackages__"],
-    deps = [":Graph"],
+    deps = [":graph"],
 )
 
 ps_cc_library(
-    name = "AllPairShortestPathGraph",
-    srcs = ["AllPairShortestPathGraph.cpp"],
-    hdrs = ["AllPairShortestPathGraph.h"],
+    name = "all_pair_shortest_path_graph",
+    srcs = ["all_pair_shortest_path_graph.cpp"],
+    hdrs = ["all_pair_shortest_path_graph.h"],
     visibility = [":__subpackages__"],
-    deps = [":Graph"],
+    deps = [":graph"],
 )
 
 ps_cc_library(
-    name = "BitVertexClusteringGraph",
-    srcs = ["BitVertexClusteringGraph.cpp"],
-    hdrs = ["BitVertexClusteringGraph.h"],
+    name = "bit_vertex_clustering_graph",
+    srcs = ["bit_vertex_clustering_graph.cpp"],
+    hdrs = ["bit_vertex_clustering_graph.h"],
     visibility = [":__subpackages__"],
 )

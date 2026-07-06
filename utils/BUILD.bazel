@@ -1,0 +1,31 @@
+load("//bazel:ps_cc_rules.bzl", "ps_cc_library")
+
+ps_cc_library(
+    name = "base64",
+    srcs = ["base64.cpp"],
+    hdrs = ["base64.h"],
+    visibility = ["//:__subpackages__"],
+)
+
+ps_cc_library(
+    name = "class_helper",
+    hdrs = ["class_helper.h"],
+    visibility = ["//:__subpackages__"],
+)
+
+ps_cc_library(
+    name = "sqlite",
+    srcs = ["sqlite.cpp"],
+    hdrs = ["sqlite.h"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "@sqlite3",
+    ],
+)
+
+ps_cc_library(
+    name = "utils",
+    srcs = ["utils.cpp"],
+    hdrs = ["utils.h"],
+    visibility = ["//:__subpackages__"],
+)
