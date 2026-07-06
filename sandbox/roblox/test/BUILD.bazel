@@ -1,21 +1,21 @@
 load("@rules_cc//cc:defs.bzl", "cc_test")
 
 cc_test(
-    name = "StrIntTest",
+    name = "str_int_test",
     size = "small",
-    srcs = ["StrIntTest.cpp"],
+    srcs = ["str_int_test.cpp"],
     deps = [
-        "//sandbox/roblox:StrInt",
+        "//sandbox/roblox:str_int",
         "@catch2//:catch2_main",
     ],
 )
 
 cc_test(
-    name = "IntTest",
+    name = "int_test",
     size = "small",
-    srcs = ["IntTest.cpp"],
+    srcs = ["int_test.cpp"],
     deps = [
-        "//sandbox/roblox:Int",
+        "//sandbox/roblox:int",
         "@catch2//:catch2_main",
     ],
 )

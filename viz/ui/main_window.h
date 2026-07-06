@@ -1,6 +1,6 @@
 #pragma once
 
-#include "opengl_widget.h"
+#include "viz/ui/opengl_widget.h"
 
 #include <QtCore/QPointer>
 #include <QtWidgets/QMainWindow>

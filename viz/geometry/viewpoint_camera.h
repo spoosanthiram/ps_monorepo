@@ -1,8 +1,7 @@
 #pragma once
 
-#include "graphics_geometry.h"
-
-#include "core/utils/ClassHelper.h"
+#include "utils/class_helper.h"
+#include "viz/geometry/viz_defs.h"
 
 #include <Eigen/Geometry>
 

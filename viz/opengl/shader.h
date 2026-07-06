@@ -1,8 +1,7 @@
 #pragma once
 
-#include "opengl_interface.h"
-
-#include "core/utils/ClassHelper.h"
+#include "utils/class_helper.h"
+#include "viz/opengl/opengl_interface.h"
 
 #include <filesystem>
 

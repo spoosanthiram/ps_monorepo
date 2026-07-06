@@ -6,129 +6,129 @@ filegroup(
 )
 
 cc_test(
-    name = "AlgoTest",
+    name = "algo_test",
     size = "small",
-    srcs = ["AlgoTest.cpp"],
+    srcs = ["algo_test.cpp"],
     data = ["data"],
     deps = [
-        "//algo/basic:Algo",
-        "//core/utils:Utils",
+        "//algo/basic:algo",
+        "//utils",
         "@catch2//:catch2_main",
     ],
 )
 
 cc_test(
-    name = "SmallPrimesTest",
+    name = "small_primes_test",
     size = "small",
-    srcs = ["SmallPrimesTest.cpp"],
+    srcs = ["small_primes_test.cpp"],
     deps = [
-        "//algo/basic:SmallPrimes",
+        "//algo/basic:small_primes",
         "@catch2//:catch2_main",
     ],
 )
 
 cc_test(
-    name = "SortingTest",
+    name = "sorting_test",
     size = "small",
-    srcs = ["SortingTest.cpp"],
+    srcs = ["sorting_test.cpp"],
     deps = [
-        "//algo/basic:Sorting",
+        "//algo/basic:sorting",
         "@catch2//:catch2_main",
     ],
 )
 
 cc_test(
-    name = "TowerOfHanoiTest",
+    name = "tower_of_hanoi_test",
     size = "small",
-    srcs = ["TowerOfHanoiTest.cpp"],
+    srcs = ["tower_of_hanoi_test.cpp"],
     deps = [
-        "//algo/basic:TowerOfHanoi",
+        "//algo/basic:tower_of_hanoi",
         "@catch2//:catch2_main",
     ],
 )
 
 cc_test(
-    name = "SinglyLinkedListTest",
+    name = "singly_linked_list_test",
     size = "small",
-    srcs = ["SinglyLinkedListTest.cpp"],
+    srcs = ["singly_linked_list_test.cpp"],
     deps = [
-        "//algo/basic:SinglyLinkedList",
+        "//algo/basic:singly_linked_list",
         "@catch2//:catch2_main",
     ],
 )
 
 cc_test(
-    name = "BinaryTreeTest",
+    name = "binary_tree_test",
     size = "small",
-    srcs = ["BinaryTreeTest.cpp"],
+    srcs = ["binary_tree_test.cpp"],
     data = ["data"],
     deps = [
-        "//algo/basic:BinaryTree",
-        "//core/utils:Utils",
+        "//algo/basic:binary_tree",
+        "//utils",
         "@catch2//:catch2_main",
     ],
 )
 
 cc_test(
-    name = "BinarySearchTreeTest",
+    name = "binary_search_tree_test",
     size = "small",
-    srcs = ["BinarySearchTreeTest.cpp"],
+    srcs = ["binary_search_tree_test.cpp"],
     deps = [
-        "//algo/basic:BinarySearchTree",
+        "//algo/basic:binary_search_tree",
         "@catch2//:catch2_main",
     ],
 )
 
 cc_test(
-    name = "MinHeapTest",
+    name = "min_heap_test",
     size = "small",
-    srcs = ["MinHeapTest.cpp"],
+    srcs = ["min_heap_test.cpp"],
     deps = [
-        "//algo/basic:MinHeap",
+        "//algo/basic:min_heap",
         "@catch2//:catch2_main",
     ],
 )
 
 cc_test(
-    name = "HuffmanCodeTest",
+    name = "huffman_code_test",
     size = "small",
-    srcs = ["HuffmanCodeTest.cpp"],
+    srcs = ["huffman_code_test.cpp"],
     data = ["data"],
     deps = [
-        "//algo/basic:HuffmanCode",
-        "//core/utils:Utils",
+        "//algo/basic:huffman_code",
+        "//utils",
         "@catch2//:catch2_main",
     ],
 )
 
 cc_test(
-    name = "HashTableTest",
+    name = "hash_table_test",
     size = "small",
-    srcs = ["HashTableTest.cpp"],
+    srcs = ["hash_table_test.cpp"],
     data = ["data"],
     deps = [
-        "//algo/basic:HashTable",
-        "//core/utils:Utils",
+        "//algo/basic:hash_table",
+        "//utils",
         "@catch2//:catch2_main",
     ],
 )
 
 cc_test(
-    name = "LRUCacheTest",
+    name = "lru_cache_test",
     size = "small",
-    srcs = ["LRUCacheTest.cpp"],
+    srcs = ["lru_cache_test.cpp"],
     deps = [
-        "//algo/basic:LRUCache",
+        "//algo/basic:lru_cache",
         "@catch2//:catch2_main",
     ],
 )
 
 cc_test(
-    name = "TrieTest",
+    name = "trie_test",
     size = "small",
-    srcs = ["TrieTest.cpp"],
+    srcs = ["trie_test.cpp"],
     deps = [
-        "//algo/basic:Trie",
+        "//algo/basic:trie",
         "@catch2//:catch2_main",
     ],
 )

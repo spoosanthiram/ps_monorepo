@@ -6,46 +6,46 @@ filegroup(
 )
 
 cc_test(
-    name = "JobScheduleTest",
+    name = "job_schedule_test",
     size = "small",
-    srcs = ["JobScheduleTest.cpp"],
+    srcs = ["job_schedule_test.cpp"],
     data = ["data"],
     deps = [
-        "//algo/other:JobSchedule",
+        "//algo/other:job_schedule",
         "@catch2//:catch2_main",
     ],
 )
 
 cc_test(
-    name = "KnapsackTest",
+    name = "knapsack_test",
     size = "small",
-    srcs = ["KnapsackTest.cpp"],
+    srcs = ["knapsack_test.cpp"],
     data = ["data"],
     deps = [
-        "//algo/other:Knapsack",
+        "//algo/other:knapsack",
         "@catch2//:catch2_main",
     ],
 )
 
 cc_test(
-    name = "TravelingSalesmanTest",
+    name = "traveling_salesman_test",
     size = "small",
-    srcs = ["TravelingSalesmanTest.cpp"],
+    srcs = ["traveling_salesman_test.cpp"],
     data = ["data"],
     deps = [
-        "//algo/other:TravelingSalesman",
+        "//algo/other:traveling_salesman",
         "@catch2//:catch2_main",
     ],
 )
 
 cc_test(
-    name = "TravelingSalesmanAlgoClassTest",
+    name = "traveling_salesman_large_test",
     size = "enormous",
     timeout = "moderate",
-    srcs = ["TravelingSalesmanAlgoClassTest.cpp"],
+    srcs = ["traveling_salesman_large_test.cpp"],
     data = ["data"],
     deps = [
-        "//algo/other:TravelingSalesman",
+        "//algo/other:traveling_salesman",
         "@catch2//:catch2_main",
     ],
 )

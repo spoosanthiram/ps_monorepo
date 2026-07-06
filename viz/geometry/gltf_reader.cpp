@@ -1,6 +1,6 @@
 #include "gltf_reader.h"
 
-#include "core/utils/Base64.h"
+#include "utils/base64.h"
 
 #include <Eigen/Core>
 #include <spdlog/spdlog.h>
@@ -114,7 +114,7 @@ Buffer GlTF::read_buffer_from_inline_data(std::string_view data, uint32_t byte_l
     const auto pos = data.find(",");
     auto base64_str = data.substr(pos + 1); // it's ok if it throws
 
-    auto buf = Ps::Core::base64_decode(base64_str);
+    auto buf = utils::base64_decode(base64_str);
     if (buf.size() != byte_length) {
         throw std::runtime_error{"Base64 data size don't match byte length."};
     }

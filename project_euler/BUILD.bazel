@@ -1,12 +1,12 @@
 load("//bazel:ps_cc_rules.bzl", "ps_cc_library")
 
 ps_cc_library(
-    name = "ProblemSet01",
-    srcs = ["ProblemSet01.cpp"],
-    hdrs = ["ProblemSet01.h"],
+    name = "problem_set01",
+    srcs = ["problem_set01.cpp"],
+    hdrs = ["problem_set01.h"],
     visibility = [":__subpackages__"],
     deps = [
-        "//algo/basic:Algo",
-        "//algo/basic:SmallPrimes",
+        "//algo/basic:algo",
+        "//algo/basic:small_primes",
     ],
 )

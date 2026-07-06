@@ -1,6 +1,5 @@
 ---
 Language: Cpp
-# BasedOnStyle:  Google
 AccessModifierOffset: -4
 AlignAfterOpenBracket: Align
 AlignArrayOfStructures: Left
@@ -81,8 +80,7 @@ IncludeCategories:
   - Regex:           '.*'
     Priority:        1
     SortPriority:    0
-IncludeIsMainRegex: '([-_](test|unittest))?$'
-# IncludeIsMainSourceRegex: ?
+IncludeIsMainRegex: "$"
 IndentAccessModifiers: false
 IndentCaseBlocks: false
 IndentCaseLabels: true
@@ -154,8 +152,7 @@ RawStringFormats:
 ReferenceAlignment: Left
 ReflowComments: true
 ShortNamespaceLines: 2
-SortIncludes: CaseInsensitive
-# SortJavaStaticImport: ?
+#SortIncludes: CaseSensitive
 SortUsingDeclarations: true
 SpaceAfterCStyleCast: false
 SpaceAfterLogicalNot: false

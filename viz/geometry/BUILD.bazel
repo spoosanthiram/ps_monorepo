@@ -17,8 +17,7 @@ ps_cc_library(
     ],
     deps = [
         ":viz_defs",
-        "//core/utils:ClassHelper",
-        "@eigen",
+        "//utils:class_helper",
     ],
 )
 
@@ -45,7 +44,7 @@ ps_cc_library(
         "//viz/opengl:__subpackages__",
     ],
     deps = [
-        "//core/utils:Base64",
+        "//utils:base64",
         "@eigen",
         "@simdjson",
         "@spdlog",
@@ -60,7 +59,7 @@ ps_cc_library(
         "//viz/ui:__subpackages__",
     ],
     deps = [
-        ":graphics_geometry",
-        "//core/utils:ClassHelper",
+        ":viz_defs",
+        "//utils:class_helper",
     ],
 )
