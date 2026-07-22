@@ -2,6 +2,34 @@
 
 #include <catch2/catch_test_macros.hpp>
 
+TEST_CASE("SinglyLinkedList Count Nodes")
+{
+    ps::algo::SinglyLinkedList sll;
+    REQUIRE(sll.count_nodes() == 0);
+
+    sll.insert(10);
+    CHECK(sll.count_nodes() == 1);
+
+    sll.insert(23);
+    CHECK(sll.count_nodes() == 2);
+
+    sll.insert(18);
+    CHECK(sll.count_nodes() == 3);
+}
+
+TEST_CASE("SinglyLinkedList Insert")
+{
+    ps::algo::SinglyLinkedList sll;
+    auto node18 = sll.insert(18);
+    sll.insert(10);
+    auto node23 = sll.insert_after(node18, 23);
+    CHECK(sll.to_vector() == std::vector<int>{10, 18, 23});
+
+    auto node25 = new ps::algo::SinglyLinkedList::Node{25};
+    sll.insert_after(node23, node25);
+    CHECK(sll.to_vector() == std::vector<int>{10, 18, 23, 25});
+}
+
 TEST_CASE("SinglyLinkedList Merge")
 {
     ps::algo::SinglyLinkedList sll;

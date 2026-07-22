@@ -20,3 +20,13 @@ ps_cc_library(
     hdrs = ["strings.h"],
     visibility = [":__subpackages__"],
 )
+
+ps_cc_library(
+    name = "linked_lists",
+    srcs = ["linked_lists.cpp"],
+    hdrs = ["linked_lists.h"],
+    visibility = [":__subpackages__"],
+    deps = [
+        "//algo/basic:singly_linked_list",
+    ],
+)

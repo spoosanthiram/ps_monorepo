@@ -11,9 +11,9 @@ SinglyLinkedList::~SinglyLinkedList()
     }
 }
 
-size_t SinglyLinkedList::count_nodes() const
+uint32_t SinglyLinkedList::count_nodes() const
 {
-    size_t size = 0;
+    uint32_t size = 0;
 
     Node* node = head_;
     while (node) {
@@ -24,7 +24,19 @@ size_t SinglyLinkedList::count_nodes() const
     return size;
 }
 
-void SinglyLinkedList::insert(int value)
+std::vector<int> SinglyLinkedList::to_vector(int32_t num_elements) const
+{
+    std::vector<int> vec;
+    Node* node = head_;
+    while (node && num_elements > 0) {
+        vec.push_back(node->data);
+        node = node->next;
+        --num_elements;
+    }
+    return vec;
+}
+
+SinglyLinkedList::Node* SinglyLinkedList::insert(int value)
 {
     Node* node = new Node{value};
     if (head_) {
@@ -34,11 +46,18 @@ void SinglyLinkedList::insert(int value)
     else {
         head_ = node;
     }
+    return node;
 }
 
-void SinglyLinkedList::insert_after(Node* node, int value)
+SinglyLinkedList::Node* SinglyLinkedList::insert_after(Node* node, int value)
 {
     Node* new_node = new Node{value};
+    insert_after(node, new_node);
+    return new_node;
+}
+
+void SinglyLinkedList::insert_after(Node* node, Node* new_node)
+{
     new_node->next = node->next;
     node->next = new_node;
 }
@@ -69,37 +88,33 @@ void SinglyLinkedList::merge(SinglyLinkedList& other)
 void SinglyLinkedList::reverse()
 {
     Node* prev_node = nullptr;
-    Node* next_node = nullptr;
     Node* node = head_;
     while (node) {
-        next_node = node->next;
+        Node* nn = node->next; // save next node
         node->next = prev_node;
         prev_node = node;
-        node = next_node;
+        node = nn;
     }
     head_ = prev_node;
 }
 
 bool SinglyLinkedList::operator==(const SinglyLinkedList& rhs) const
 {
-    bool retval = true;
-
-    Node* lnode = head_;
-    Node* rnode = rhs.head_;
+    auto lnode = head_;
+    auto rnode = rhs.head_;
     while (lnode && rnode) {
         if (lnode->data != rnode->data) {
-            retval = false;
-            break;
+            return false;
         }
         lnode = lnode->next;
         rnode = rnode->next;
     }
 
-    if (retval && (lnode || rnode)) {
-        retval = false;
+    if (lnode || rnode) {
+        return false;
     }
 
-    return retval;
+    return true;
 }
 
 } // namespace ps::algo
