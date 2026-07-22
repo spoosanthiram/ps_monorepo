@@ -29,3 +29,13 @@ cc_test(
         "@catch2//:catch2_main",
     ],
 )
+
+cc_test(
+    name = "linked_lists_test",
+    size = "small",
+    srcs = ["linked_lists_test.cpp"],
+    deps = [
+        "//algo/prep/epi:linked_lists",
+        "@catch2//:catch2_main",
+    ],
+)

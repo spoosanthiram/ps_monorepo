@@ -43,7 +43,10 @@ ps_cc_library(
     name = "singly_linked_list",
     srcs = ["singly_linked_list.cpp"],
     hdrs = ["singly_linked_list.h"],
-    visibility = [":__subpackages__"],
+    visibility = [
+        ":__subpackages__",
+        "//algo/prep/epi:__pkg__",
+    ],
     deps = [
         "//utils:class_helper",
     ],

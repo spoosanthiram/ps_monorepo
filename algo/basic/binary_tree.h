@@ -5,6 +5,7 @@
 #include <functional>
 #include <istream>
 #include <ostream>
+#include <stack>
 #include <vector>
 
 namespace ps::algo {
