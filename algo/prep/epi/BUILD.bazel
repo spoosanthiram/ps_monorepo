@@ -30,3 +30,10 @@ ps_cc_library(
         "//algo/basic:singly_linked_list",
     ],
 )
+
+ps_cc_library(
+    name = "stacks_and_queues",
+    srcs = ["stacks_and_queues.cpp"],
+    hdrs = ["stacks_and_queues.h"],
+    visibility = [":__subpackages__"],
+)
