@@ -203,13 +203,11 @@ bool BinaryTree<NodeType>::is_symmetric(const BinaryTreeNode<NodeType>* lnode,
     if (!lnode && !rnode) {
         return true;
     }
-    else if (lnode && rnode) {
-        return (lnode->value == rnode->value) && is_symmetric(lnode->left, rnode->right) &&
-               is_symmetric(lnode->right, rnode->left);
-    }
-    else {
+    if (!lnode || !rnode) {
         return false;
     }
+    return (lnode->value == rnode->value) && is_symmetric(lnode->left, rnode->right) &&
+           is_symmetric(lnode->right, rnode->left);
 }
 
 template <typename NodeType>

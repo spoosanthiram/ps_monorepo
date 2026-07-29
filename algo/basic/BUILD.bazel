@@ -57,7 +57,10 @@ ps_cc_library(
     hdrs = [
         "binary_tree.h",
     ],
-    visibility = [":__subpackages__"],
+    visibility = [
+        ":__subpackages__",
+        "//algo/prep/epi:__pkg__",
+    ],
     deps = [
         "//utils:class_helper",
     ],
@@ -68,7 +71,10 @@ ps_cc_library(
     hdrs = [
         "binary_search_tree.h",
     ],
-    visibility = [":__subpackages__"],
+    visibility = [
+        ":__subpackages__",
+        "//algo/prep/epi/test:__pkg__",
+    ],
     deps = [
         ":binary_tree",
         "@spdlog",
