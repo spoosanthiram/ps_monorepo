@@ -37,3 +37,13 @@ ps_cc_library(
     hdrs = ["stacks_and_queues.h"],
     visibility = [":__subpackages__"],
 )
+
+ps_cc_library(
+    name = "binary_trees",
+    srcs = ["binary_trees.cpp"],
+    hdrs = ["binary_trees.h"],
+    visibility = [":__subpackages__"],
+    deps = [
+        "//algo/basic:binary_tree",
+    ],
+)

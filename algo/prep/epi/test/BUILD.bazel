@@ -49,3 +49,14 @@ cc_test(
         "@catch2//:catch2_main",
     ],
 )
+
+cc_test(
+    name = "binary_trees_test",
+    size = "small",
+    srcs = ["binary_trees_test.cpp"],
+    deps = [
+        "//algo/prep/epi:binary_trees",
+        "//algo/basic:binary_search_tree",
+        "@catch2//:catch2_main",
+    ],
+)
