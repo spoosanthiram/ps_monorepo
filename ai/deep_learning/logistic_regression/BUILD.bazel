@@ -1,14 +1,5 @@
-load("@rules_cc//cc:defs.bzl", "cc_binary")
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
 load("@rules_python//python:defs.bzl", "py_binary")
-
-cc_binary(
-    name = "hdf5_test",
-    srcs = ["hdf5_test.cpp"],
-    data = ["//ai/deep_learning/dataset:catvnoncat"],
-    deps = [
-        "@local_hdf5//:hdf5_cpp",
-    ],
-)
 
 filegroup(
     name = "images",
@@ -20,7 +11,7 @@ py_binary(
     srcs = ["model.py"],
     data = [
         ":images",
-        "//ai/deep_learning/dataset:catvnoncat",
+        "//ai/deep_learning/dataset:cat_and_non-cat",
     ],
     main = "model.py",
     deps = [
@@ -28,4 +19,20 @@ py_binary(
         "@pypi//matplotlib",
         "@pypi//numpy",
     ],
+)
+
+cc_library(
+    name = "image_dataset",
+    srcs = ["image_dataset.cpp"],
+    hdrs = ["image_dataset.h"],
+    data = ["//ai/deep_learning/dataset:cat_and_non-cat"],
+    deps = [
+        "@hdf5//:hdf5_cpp",
+    ],
+)
+
+cc_binary(
+    name = "logistic_regression",
+    srcs = ["main.cpp"],
+    deps = [":image_dataset"],
 )
