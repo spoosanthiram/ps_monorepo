@@ -6,22 +6,22 @@ from PIL import Image
 
 
 def load_dataset():
-    train_dataset = h5py.File("ai/deep_learning/dataset/train_catvnoncat.h5", "r")
+    train_dataset = h5py.File("ai/deep_learning/dataset/train_cat_and_non-cat.h5", "r")
     train_set_x_orig = np.array(train_dataset["train_set_x"][:])  # your train set features
-    print(train_set_x_orig.shape)
+    print("train_set_x_orig.shape: ", train_set_x_orig.shape)
     train_set_y_orig = np.array(train_dataset["train_set_y"][:])  # your train set labels
-    print(train_set_y_orig.shape)
+    print("train_set_y_orig.shape: ", train_set_y_orig.shape)
 
-    test_dataset = h5py.File("ai/deep_learning/dataset/test_catvnoncat.h5", "r")
+    test_dataset = h5py.File("ai/deep_learning/dataset/test_cat_and_non-cat.h5", "r")
     test_set_x_orig = np.array(test_dataset["test_set_x"][:])  # your test set features
     test_set_y_orig = np.array(test_dataset["test_set_y"][:])  # your test set labels
 
     classes = np.array(test_dataset["list_classes"][:])  # the list of classes
 
     train_set_y_orig = train_set_y_orig.reshape((1, train_set_y_orig.shape[0]))
-    print(train_set_y_orig.shape)
+    print("train_set_y_orig.shape: ", train_set_y_orig.shape)
     test_set_y_orig = test_set_y_orig.reshape((1, test_set_y_orig.shape[0]))
-    print(test_set_y_orig.shape)
+    print("test_set_y_orig.shape: ", test_set_y_orig.shape)
 
     return train_set_x_orig, train_set_y_orig, test_set_x_orig, test_set_y_orig, classes
 
@@ -203,8 +203,8 @@ def model(X_train, Y_train, X_test, Y_test, num_iterations=2000, learning_rate=0
 
 if __name__ == "__main__":
     train_set_x_orig, train_set_y, test_set_x_orig, test_set_y, classes = load_dataset()
-    print(classes)
-    print(train_set_x_orig.dtype)
+    print("classes: ", classes)
+    print("train_set_x_orig.dtype: ", train_set_x_orig.dtype)
     # plt.imshow(train_set_x_orig[0])
     # plt.show()
 
@@ -217,10 +217,10 @@ if __name__ == "__main__":
 
     train_set_x_flatten = train_set_x_orig.reshape(train_set_x_orig.shape[0], -1).T
     test_set_x_flatten = test_set_x_orig.reshape(test_set_x_orig.shape[0], -1).T
-    print(train_set_x_flatten.shape)
-    print(train_set_y.shape)
-    print(test_set_x_flatten.shape)
-    print(test_set_y.shape)
+    print("train_set_x_flatten.shape: ", train_set_x_flatten.shape)
+    print("train_set_y.shape: ", train_set_y.shape)
+    print("test_set_x_flatten.shape: ", test_set_x_flatten.shape)
+    print("test_set_y.shape: ", test_set_y.shape)
 
     # pre-process data to have feature values between 0 and 1.
     train_set_x = train_set_x_flatten / 255.0

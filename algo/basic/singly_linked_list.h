@@ -2,7 +2,7 @@
 
 #include "utils/class_helper.h"
 
-#include <cstddef>
+#include <cstdint>
 #include <vector>
 
 namespace ps::algo {

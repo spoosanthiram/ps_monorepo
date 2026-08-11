@@ -1,5 +1,7 @@
 #include "linked_lists.h"
 
+#include <cmath>
+
 namespace ps::algo {
 
 SinglyLinkedList::Node* has_cycle(SinglyLinkedList::Node* head)
