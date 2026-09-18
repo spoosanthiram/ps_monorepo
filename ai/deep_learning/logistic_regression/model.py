@@ -60,7 +60,7 @@ def propagate(w, b, X, Y):
     m = X.shape[1]
 
     A = sigmoid(np.dot(w.T, X) + b)
-    cost = -1.0 / m * np.sum(Y * np.log(A) + (1 - Y) * np.log(1 - A))
+    cost = -1.0 / m * (np.sum(Y * np.log(A) + (1 - Y) * np.log(1 - A)))
 
     dz = A - Y
     dw = np.dot(X, dz.T) / m

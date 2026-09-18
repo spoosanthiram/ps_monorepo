@@ -31,8 +31,20 @@ cc_library(
     ],
 )
 
+cc_library(
+    name = "logistic_regression_model",
+    srcs = ["logistic_regression_model.cpp"],
+    hdrs = ["logistic_regression_model.h"],
+    deps = [
+        ":image_dataset",
+        "@eigen",
+    ],
+)
+
 cc_binary(
     name = "logistic_regression",
     srcs = ["main.cpp"],
-    deps = [":image_dataset"],
+    deps = [
+        ":logistic_regression_model",
+    ],
 )
