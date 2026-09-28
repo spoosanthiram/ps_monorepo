@@ -40,14 +40,11 @@ void data_sub()
 
 int main()
 {
-    std::thread sub_thread{data_sub};
-    std::thread pub_thread{data_pub};
+    std::jthread sub_thread{data_sub};
+    std::jthread pub_thread{data_pub};
 
-    std::this_thread::sleep_for(5ms);
+    std::this_thread::sleep_for(1ms);
     running = false;
-
-    pub_thread.join();
-    sub_thread.join();
 
     return 0;
 }
