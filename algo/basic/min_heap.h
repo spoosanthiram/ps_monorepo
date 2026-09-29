@@ -54,7 +54,7 @@ public:
     const T& top() const { return heap_.front(); }
     bool is_empty() const { return heap_.empty(); }
 
-    void sift_down(size_t i);
+    void heapify(size_t i);
     void sift_up(size_t i);
 
     void push(const T& element)
@@ -78,7 +78,7 @@ public:
         index_(heap_[0], 0);
         heap_.pop_back();
 
-        sift_down(0);
+        heapify(0);
 
         return element;
     }
@@ -104,12 +104,12 @@ void MinHeap<T, LessThan, Index>::make()
     }
 
     for (int64_t i = heap_.size() / 2 - 1; i >= 0; --i) {
-        sift_down(i);
+        heapify(i);
     }
 }
 
 template <typename T, typename LessThan, typename Index>
-void MinHeap<T, LessThan, Index>::sift_down(size_t i)
+void MinHeap<T, LessThan, Index>::heapify(size_t i)
 {
     size_t l = left(i);
     size_t r = right(i);
@@ -126,7 +126,7 @@ void MinHeap<T, LessThan, Index>::sift_down(size_t i)
         std::swap(heap_[i], heap_[smallest]);
         index_(heap_[i], i);
         index_(heap_[smallest], smallest);
-        sift_down(smallest);
+        heapify(smallest);
     }
 }
 
@@ -134,7 +134,7 @@ template <typename T, typename LessThan, typename Index>
 void MinHeap<T, LessThan, Index>::sift_up(size_t i)
 {
     if (i >= heap_.size()) {
-        throw std::runtime_error(
+        throw std::domain_error(
             std::format("The index for MinHeap<>::siftup() is not within the range [{}, {}]", 0, heap_.size() - 1));
     }
 
