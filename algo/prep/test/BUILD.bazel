@@ -1,16 +1,6 @@
 load("@rules_cc//cc:defs.bzl", "cc_test")
 
 cc_test(
-    name = "recursion_test",
-    size = "small",
-    srcs = ["recursion_test.cpp"],
-    deps = [
-        "//algo/prep:recursion",
-        "@catch2//:catch2_main",
-    ],
-)
-
-cc_test(
     name = "hacker_rank_test",
     size = "small",
     srcs = ["hacker_rank_test.cpp"],
@@ -36,6 +26,16 @@ cc_test(
     srcs = ["circular_buffer_test.cpp"],
     deps = [
         "//algo/prep:circular_buffer",
+        "@catch2//:catch2_main",
+    ],
+)
+
+cc_test(
+    name = "others_test",
+    size = "small",
+    srcs = ["others_test.cpp"],
+    deps = [
+        "//algo/prep:others",
         "@catch2//:catch2_main",
     ],
 )

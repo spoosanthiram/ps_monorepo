@@ -4,23 +4,3 @@ cc_binary(
     name = "hello",
     srcs = ["hello.cpp"],
 )
-
-cc_binary(
-    name = "add",
-    srcs = ["add.cpp"],
-)
-
-cc_binary(
-    name = "shared_data",
-    srcs = ["shared_data.cpp"],
-)
-
-cc_binary(
-    name = "data_sync",
-    srcs = ["data_sync.cpp"],
-)
-
-cc_binary(
-    name = "future",
-    srcs = ["future.cpp"],
-)

@@ -109,16 +109,25 @@ ps_cc_library(
     ],
 )
 
-cc_library(
+ps_cc_library(
     name = "lru_cache",
     srcs = ["lru_cache.cpp"],
     hdrs = ["lru_cache.h"],
     visibility = [":__subpackages__"],
 )
 
-cc_library(
+ps_cc_library(
     name = "trie",
     srcs = ["trie.cpp"],
     hdrs = ["trie.h"],
     visibility = [":__subpackages__"],
+)
+
+ps_cc_library(
+    name = "max_heap",
+    hdrs = ["max_heap.h"],
+    visibility = [
+        ":__subpackages__",
+        "//algo/prep:__pkg__",
+    ],
 )

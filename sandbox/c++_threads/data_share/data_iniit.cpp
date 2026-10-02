@@ -18,6 +18,12 @@ void use_int()
     std::cout << "*shared_int: " << *shared_int << '\n';
 }
 
+int get_val()
+{
+    static int val = 10; // this is thread safe
+    return val;
+}
+
 int main()
 {
     std::jthread t0{use_int};

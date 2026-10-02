@@ -1,0 +1,16 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+
+cc_binary(
+    name = "add",
+    srcs = ["add.cpp"],
+)
+
+cc_binary(
+    name = "data_iniit",
+    srcs = ["data_iniit.cpp"],
+)
+
+cc_binary(
+    name = "shared_lock",
+    srcs = ["shared_lock.cpp"],
+)

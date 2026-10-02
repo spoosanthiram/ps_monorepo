@@ -1,13 +1,6 @@
 load("//bazel:ps_cc_rules.bzl", "ps_cc_library")
 
 ps_cc_library(
-    name = "recursion",
-    srcs = ["recursion.cpp"],
-    hdrs = ["recursion.h"],
-    visibility = [":__subpackages__"],
-)
-
-ps_cc_library(
     name = "hacker_rank",
     srcs = ["hacker_rank.cpp"],
     hdrs = ["hacker_rank.h"],
@@ -26,4 +19,14 @@ ps_cc_library(
     srcs = ["circular_buffer.cpp"],
     hdrs = ["circular_buffer.h"],
     visibility = [":__subpackages__"],
+)
+
+ps_cc_library(
+    name = "others",
+    srcs = ["others.cpp"],
+    hdrs = ["others.h"],
+    visibility = [":__subpackages__"],
+    deps = [
+        "//algo/basic:max_heap",
+    ],
 )
