@@ -125,7 +125,9 @@ ps_cc_library(
 
 ps_cc_library(
     name = "max_heap",
-    srcs = ["max_heap.cpp"],
     hdrs = ["max_heap.h"],
-    visibility = [":__subpackages__"],
+    visibility = [
+        ":__subpackages__",
+        "//algo/prep:__pkg__",
+    ],
 )
