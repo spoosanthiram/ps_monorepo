@@ -9,3 +9,8 @@ cc_binary(
     name = "future",
     srcs = ["future.cpp"],
 )
+
+cc_binary(
+    name = "latch",
+    srcs = ["latch.cpp"],
+)
