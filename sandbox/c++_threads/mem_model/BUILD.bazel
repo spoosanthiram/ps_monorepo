@@ -1,0 +1,21 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+
+cc_binary(
+    name = "ordering_seq_cst",
+    srcs = ["ordering_seq_cst.cpp"],
+)
+
+cc_binary(
+    name = "ordering_relaxed",
+    srcs = ["ordering_relaxed.cpp"],
+)
+
+cc_binary(
+    name = "ordering_relaxed2",
+    srcs = ["ordering_relaxed2.cpp"],
+)
+
+cc_binary(
+    name = "ordering_acq_rel",
+    srcs = ["ordering_acq_rel.cpp"],
+)
