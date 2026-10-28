@@ -1,5 +1,6 @@
 #include "kruskal_min_spanning_graph.h"
 
+#include <algorithm>
 #include <forward_list>
 
 namespace ps::algo {
