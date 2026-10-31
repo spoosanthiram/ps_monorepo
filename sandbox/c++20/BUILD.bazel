@@ -19,3 +19,8 @@ cc_binary(
     name = "try",
     srcs = ["try.cpp"],
 )
+
+cc_binary(
+    name = "scope_guard",
+    srcs = ["scope_guard.cpp"],
+)
