@@ -3,6 +3,8 @@
 
 #include <catch2/catch_test_macros.hpp>
 
+#include <algorithm>
+
 TEST_CASE("StronglyConnectedGraph AlgoClassKosaraju")
 {
     auto stream = ps::utils::open_stream("algo/graph/test/data/strongly_connected_big_adj_list.txt");
